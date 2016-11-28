@@ -68,6 +68,7 @@
   },
   "scripts": {
     "dev": "node scripts/start.js",
+    "dev-https": "HTTPS=true npm run dev",
     "build": "node scripts/build.js && sw-precache --config='config/sw-precache-config.js'",
     "serve": "pushstate-server build",
     "prod": "npm run build && npm run serve",
