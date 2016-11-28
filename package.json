@@ -105,5 +105,6 @@
   },
   "standard": {
     "parser": "babel-eslint"
-  }
+  },
+  "homepage": "https://quecolectivo.github.io/quecolectivo"
 }

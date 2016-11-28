@@ -33,7 +33,7 @@
       "type": "image/png"
     }
   ],
-  "start_url": "/#/dir",
+  "start_url": "./#/dir",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#FFFFFF",
