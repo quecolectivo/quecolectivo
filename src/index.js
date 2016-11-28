@@ -12,12 +12,6 @@ import './index.css'
 injectTapEventPlugin()
 const history = syncHistoryWithStore(hashHistory, store)
 
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', function () {
-    navigator.serviceWorker.register('/service-worker.js')
-  })
-}
-
 ReactDOM.render(
   <Provider store={store}>
     <Router history={history} routes={routes} />
