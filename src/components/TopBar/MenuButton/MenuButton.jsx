@@ -21,7 +21,7 @@ const MenuButton = props => {
     <IconButton
       tooltip={props.title}
       touch
-      style={props.currentPath === props.path && sty.buttonStyle}
+      style={props.currentPath === props.path ? sty.buttonStyle : null}
       iconStyle={sty.iconButton}
       onTouchTap={props.onTouchTap}
       tooltipPosition={props.position}>
