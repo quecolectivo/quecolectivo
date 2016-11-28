@@ -1,3 +1,3 @@
-import store from './configureStore';
+import store from './configureStore'
 
-export default store;
+export default store

@@ -1,3 +1,3 @@
-import Directions from './Directions';
+import Directions from './Directions'
 
-export default Directions;
+export default Directions

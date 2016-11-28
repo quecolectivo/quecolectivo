@@ -1,9 +1,9 @@
-import React from 'react';
-import muiThemeable from 'material-ui/styles/muiThemeable';
-import Paper from 'material-ui/Paper';
-import Menu from '../Menu';
-import TopBar from '../TopBar';
-import './SidePanel.css';
+import React from 'react'
+import muiThemeable from 'material-ui/styles/muiThemeable'
+import Paper from 'material-ui/Paper'
+import Menu from '../Menu'
+import TopBar from '../TopBar'
+import './SidePanel.css'
 
 const paperStyle = (muiTheme) => ({
     position: 'absolute',
@@ -17,7 +17,7 @@ const paperStyle = (muiTheme) => ({
     flexDirection: 'column',
     backgroundColor: muiTheme.palette.accent2Color,
     overflow: 'visible',
-});
+})
 
 const panelStyle = {
     position: 'absolute',
@@ -26,7 +26,7 @@ const panelStyle = {
     left: 0,
     zIndex: 2,
     outlineOffset: '-2px',
-};
+}
 
 class SidePanel extends React.Component{
     constructor(props){
@@ -46,6 +46,6 @@ class SidePanel extends React.Component{
                 </Paper>
             <Menu handle={this.handleMenu} open={this.state.menuOpened} />
         </side-panel>
-    );
+    )
 }
-export default muiThemeable()(SidePanel);
+export default muiThemeable()(SidePanel)
