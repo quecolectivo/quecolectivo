@@ -1,0 +1,41 @@
+{
+  "name": "Qué Colectivo?",
+  "short_name": "Qué Colectivo?",
+  "icons": [
+    {
+      "src": "./icon/iconldpi.png",
+      "sizes": "114x114",
+      "type": "image/png"
+    },
+    {
+      "src": "./icon/iconmdpi.png",
+      "sizes": "152x152",
+      "type": "image/png"
+    },
+    {
+      "src": "./icon/iconhdpi.png",
+      "sizes": "228x228",
+      "type": "image/png"
+    },
+    {
+      "src": "./icon/iconxhdpi.png",
+      "sizes": "304x304",
+      "type": "image/png"
+    },
+    {
+      "src": "./icon/iconxxhdpi.png",
+      "sizes": "456x456",
+      "type": "image/png"
+    },
+    {
+      "src": "./icon/iconxxxhdpi.png",
+      "sizes": "608x608",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/#/dir",
+  "display": "standalone",
+  "orientation": "potrait",
+  "background_color": "#E0E0E0",
+  "theme_color": "#1E88E5"
+}
