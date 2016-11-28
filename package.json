@@ -41,6 +41,7 @@
     "react-dev-utils": "^0.3.0",
     "recursive-readdir": "2.1.0",
     "rimraf": "2.5.4",
+    "standard": "^8.6.0",
     "strip-ansi": "3.0.1",
     "style-loader": "0.13.1",
     "url-loader": "0.5.7",
@@ -67,7 +68,9 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
-    "deploy-gh": "gh-pages -d build"
+    "deploy-gh": "gh-pages -d build",
+    "lint": "cd src && standard || exit 0",
+    "style": "cd src && standard --fix || exit 0"
   },
   "jest": {
     "moduleFileExtensions": [
@@ -94,5 +97,8 @@
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "standard": {
+    "parser": "babel-eslint"
   }
 }

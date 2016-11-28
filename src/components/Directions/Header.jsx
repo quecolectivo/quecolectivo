@@ -45,17 +45,18 @@ const style = (muiTheme) => ({
     height: 20
   },
   hintStyle: {
-    color: 'rgba(255, 255, 255, 0.68)',
-    fontWeight: 100
+    color: 'rgba(255, 255, 255, 0.5)',
+    fontWeight: 100,
+    fontSize: 14
   },
   searchText: {
-    color: 'rgba(255, 255, 255, 0.870588)'
+    color: 'rgba(255, 255, 255, 0.9)'
   },
   searchUnderline: {
-    borderColor: 'rgba(255, 255, 255, 0.5)'
+    borderBottomColor: 'rgba(255, 255, 255, 0.5)'
   },
   searchUnderlineFocus: {
-    borderColor: 'rgba(255, 255, 255, 0.68)'
+    borderBottomColor: 'rgba(255, 255, 255, 0.8)'
   }
 })
 
@@ -97,7 +98,7 @@ const Header = ({ muiTheme }) => {
         </IconButton>
       </swap-col>
     </header>
-    )
+  )
 }
 
 export default muiThemeable()(Header)

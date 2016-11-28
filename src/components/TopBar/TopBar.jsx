@@ -1,5 +1,4 @@
 import React from 'react'
-import IconButton from 'material-ui/IconButton'
 import NavigationMenu from 'material-ui/svg-icons/navigation/menu'
 import MapDirections from 'material-ui/svg-icons/maps/directions'
 import MapDirectionsBus from 'material-ui/svg-icons/maps/directions-bus'
@@ -7,10 +6,9 @@ import SocialShare from 'material-ui/svg-icons/social/share'
 import muiThemeable from 'material-ui/styles/muiThemeable'
 import {Link} from 'react-router'
 
+import MenuButton from './MenuButton'
+
 const styles = (muiTheme) => ({
-  iconButton: {
-    color: muiTheme.palette.alternateTextColor
-  },
   topBar: {
     background: muiTheme.palette.primary1Color,
     height: 48,
@@ -37,18 +35,6 @@ const styles = (muiTheme) => ({
   }
 })
 
-const MenuButton = muiThemeable()((props) => (
-  <IconButton
-    tooltip={props.title}
-    touch
-    iconStyle={styles(props.muiTheme).iconButton}
-    onTouchTap={props.onTouchTap}
-    tooltipPosition={props.position}
-    >
-    {props.children}
-  </IconButton>
-))
-
 const TopBar = ({ toggleMenu, muiTheme }) => (
   <div style={styles(muiTheme).topBar} >
     <hamburger style={styles(muiTheme).hamburger}>
@@ -59,12 +45,12 @@ const TopBar = ({ toggleMenu, muiTheme }) => (
     <nav style={styles(muiTheme).navBar} >
       <nav-left style={styles(muiTheme).navBarLeft}>
         <Link to='dir'>
-          <MenuButton title='Direcciones'>
+          <MenuButton title='Direcciones' path='dir'>
             <MapDirections />
           </MenuButton>
         </Link>
         <Link to='recorridos'>
-          <MenuButton title='Micros'>
+          <MenuButton title='Micros' path='recorridos'>
             <MapDirectionsBus />
           </MenuButton>
         </Link>
