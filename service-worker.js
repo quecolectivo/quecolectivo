@@ -37,7 +37,7 @@
 /* eslint-disable indent, no-unused-vars, no-multiple-empty-lines, max-nested-callbacks, space-before-function-paren, quotes, comma-spacing */
 'use strict';
 
-var precacheConfig = [["favicon.png","4f8fbc50a1b910f42835f013be06ee00"],["icon/icon.svg","eb5a90cff52c2c4c844a0817dd9f2b1d"],["icon/iconhdpi.png","cbbe544cb1f56890af5e283086da853f"],["icon/iconldpi.png","4edeab74387d3bebfce8e85871bf3527"],["icon/iconmdpi.png","71020924d253921ff12f5b5b4bd36e00"],["icon/iconxhdpi.png","f8722a1b5d7f0f382bf5a033679fe656"],["icon/iconxxhdpi.png","096459e0e1c2b907a25df64d56d75b7e"],["icon/iconxxxhdpi.png","68b19aed2241f8fbf0638df8368b710e"],["index.html","ecce6c6b17d28827e8c84ffcc9ca2f30"],["manifest.json","ea461a278566ec080173a09edbcd190d"],["static/css/main.d9597276.css","86ca3a67b279f8d5c3af8fcdd3938a52"],["static/js/main.7e74f4a9.js","eeee77252bd2a81b3a74aa5fe18baa55"]];
+var precacheConfig = [["favicon.png","4f8fbc50a1b910f42835f013be06ee00"],["icon/icon.svg","eb5a90cff52c2c4c844a0817dd9f2b1d"],["icon/iconhdpi.png","cbbe544cb1f56890af5e283086da853f"],["icon/iconldpi.png","4edeab74387d3bebfce8e85871bf3527"],["icon/iconmdpi.png","71020924d253921ff12f5b5b4bd36e00"],["icon/iconxhdpi.png","f8722a1b5d7f0f382bf5a033679fe656"],["icon/iconxxhdpi.png","096459e0e1c2b907a25df64d56d75b7e"],["icon/iconxxxhdpi.png","68b19aed2241f8fbf0638df8368b710e"],["index.html","4b4f5d2a8f729d67ac3b71cdf6b06f2f"],["manifest.json","ea461a278566ec080173a09edbcd190d"],["static/css/main.d9597276.css","86ca3a67b279f8d5c3af8fcdd3938a52"],["static/js/main.d5056f71.js","def82857efeef47a0e4e008317b6e1fa"]];
 var cacheName = 'sw-precache-v2-sw-precache-' + (self.registration ? self.registration.scope : '');
 
 
