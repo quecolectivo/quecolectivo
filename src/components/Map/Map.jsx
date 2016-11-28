@@ -1,5 +1,5 @@
 import React from 'react'
-//import GoogleMap from 'google-map-react'
+import GoogleMap from 'google-map-react'
 
 const apiKey = 'AIzaSyCU2AEu_YCQAgvOWHHDvshTnAZMKLqkxQw'
 
@@ -17,13 +17,13 @@ const style = {
 
 // onGoogleApiLoaded={({map, maps}) => console.log(map, maps)}
 
-/*<GoogleMap
-  bootstrapURLKeys={{key: apiKey}}
-  defaultCenter={props.center}
-  defaultZoom={props.zoom}
-     />*/
 const Map = () => (
   <the-map style={style}>
+    <GoogleMap
+        bootstrapURLKeys={{key: apiKey}}
+        defaultCenter={props.center}
+        defaultZoom={props.zoom}
+    />
   </the-map>
 )
 
