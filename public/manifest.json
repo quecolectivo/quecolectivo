@@ -33,9 +33,9 @@
       "type": "image/png"
     }
   ],
-  "start_url": "/dir",
+  "start_url": "/#/dir",
   "display": "standalone",
-  "orientation": "potrait",
+  "orientation": "portrait",
   "background_color": "#FFFFFF",
   "theme_color": "#4285F4"
 }

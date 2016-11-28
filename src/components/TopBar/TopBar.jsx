@@ -4,7 +4,7 @@ import MapDirections from 'material-ui/svg-icons/maps/directions'
 import MapDirectionsBus from 'material-ui/svg-icons/maps/directions-bus'
 import SocialShare from 'material-ui/svg-icons/social/share'
 import muiThemeable from 'material-ui/styles/muiThemeable'
-import {Link} from 'react-router'
+import { Link } from 'react-router'
 
 import MenuButton from './MenuButton'
 
