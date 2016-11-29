@@ -16,14 +16,15 @@ const style = {
 }
 
 // onGoogleApiLoaded={({map, maps}) => console.log(map, maps)}
-
-const Map = () => (
-  <the-map style={style}>
+/* 
     <GoogleMap
         bootstrapURLKeys={{key: apiKey}}
         defaultCenter={props.center}
         defaultZoom={props.zoom}
     />
+*/
+const Map = () => (
+  <the-map style={style}>
   </the-map>
 )
 

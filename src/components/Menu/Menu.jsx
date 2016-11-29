@@ -7,6 +7,7 @@ import ContentSend from 'material-ui/svg-icons/content/send'
 import ContentDrafts from 'material-ui/svg-icons/content/drafts'
 import Divider from 'material-ui/Divider'
 import ActionInfo from 'material-ui/svg-icons/action/info'
+import Wallpaper from '../../assets/images/wallpaper.png'
 
 const Menu = ({ open, handle }) => (
   <my-menu>
@@ -19,7 +20,7 @@ const Menu = ({ open, handle }) => (
         width: 320,
         height: 180,
         display: 'block',
-        backgroundImage: "url('http://www.lirent.net/wp-content/uploads/2014/10/Google-Now-Wallpaper-1-800x450.png')",
+        backgroundImage: `url(${Wallpaper})`,
         backgroundSize: 'contain',
         backgroundRepeat: 'no-repeat'
       }} />

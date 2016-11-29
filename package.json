@@ -35,6 +35,7 @@
     "jest": "16.0.2",
     "json-loader": "0.5.4",
     "object-assign": "4.1.0",
+    "offline-plugin": "^4.5.2",
     "path-exists": "2.1.0",
     "postcss-loader": "1.0.0",
     "promise": "7.1.1",
@@ -46,6 +47,8 @@
     "strip-ansi": "3.0.1",
     "style-loader": "0.13.1",
     "sw-precache": "^4.2.3",
+    "sw-precache-webpack-plugin": "^0.6.3",
+    "sw-toolbox": "^3.4.0",
     "url-loader": "0.5.7",
     "webpack": "^1.13.2",
     "webpack-dev-server": "^1.16.2",
@@ -68,14 +71,16 @@
   },
   "scripts": {
     "dev": "node scripts/start.js",
-    "dev-https": "HTTPS=true npm run dev",
+    "dev:https": "HTTPS=true npm run dev",
+    "build2": "node scripts/build.js",
     "build": "node scripts/build.js && sw-precache --config='config/sw-precache-config.js'",
     "serve": "pushstate-server build",
     "prod": "npm run build && npm run serve",
     "test": "node scripts/test.js --env=jsdom",
-    "deploy-gh": "gh-pages -d build",
+    "deploy": "gh-pages -d build",
+    "buildanddeploy": "npm run build && npm run deploy",
     "lint": "cd src && standard || exit 0",
-    "style": "cd src && standard --fix || exit 0"
+    "lint:fix": "cd src && standard --fix || exit 0"
   },
   "jest": {
     "moduleFileExtensions": [
