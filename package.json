@@ -72,8 +72,8 @@
   "scripts": {
     "dev": "node scripts/start.js",
     "dev:https": "HTTPS=true npm run dev",
-    "build2": "node scripts/build.js",
-    "build": "node scripts/build.js && sw-precache --config='config/sw-precache-config.js'",
+    "build": "node scripts/build.js",
+    "build2": "node scripts/build.js && sw-precache --config='config/sw-precache-config.js'",
     "serve": "pushstate-server build",
     "prod": "npm run build && npm run serve",
     "test": "node scripts/test.js --env=jsdom",
