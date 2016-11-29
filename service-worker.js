@@ -37,8 +37,8 @@
 /* eslint-disable indent, no-unused-vars, no-multiple-empty-lines, max-nested-callbacks, space-before-function-paren, quotes, comma-spacing */
 'use strict';
 
-var precacheConfig = [["build/favicon.png","4f8fbc50a1b910f42835f013be06ee00"],["build/icon/icon.svg","eb5a90cff52c2c4c844a0817dd9f2b1d"],["build/icon/iconhdpi.png","cbbe544cb1f56890af5e283086da853f"],["build/icon/iconldpi.png","4edeab74387d3bebfce8e85871bf3527"],["build/icon/iconmdpi.png","71020924d253921ff12f5b5b4bd36e00"],["build/icon/iconxhdpi.png","f8722a1b5d7f0f382bf5a033679fe656"],["build/icon/iconxxhdpi.png","096459e0e1c2b907a25df64d56d75b7e"],["build/icon/iconxxxhdpi.png","68b19aed2241f8fbf0638df8368b710e"],["build/index.html","3594c2bfe912e3311b5695b8fe959ec6"],["build/manifest.json","b749826f1ceecda67338f22c9b3b0fc8"],["build/static/css/main.6d298fa7.css","dffa2353ef6bde36c9c26e5d43e0c4ac"],["build/static/js/main.42beb506.js","b49c243e445909d3fa2e9dc0e1322ee6"],["build/static/media/Roboto-Regular.ac3f799d.ttf","ac3f799d5bbaf5196fab15ab8de8431c"],["build/static/media/wallpaper.23859503.png","2385950337c18ea3f3e362849b89d3a4"]];
-var cacheName = 'sw-precache-v2-quecolectivo-' + (self.registration ? self.registration.scope : '');
+var precacheConfig = [["favicon.png","4f8fbc50a1b910f42835f013be06ee00"],["icon/icon.svg","eb5a90cff52c2c4c844a0817dd9f2b1d"],["icon/iconhdpi.png","cbbe544cb1f56890af5e283086da853f"],["icon/iconldpi.png","4edeab74387d3bebfce8e85871bf3527"],["icon/iconmdpi.png","71020924d253921ff12f5b5b4bd36e00"],["icon/iconxhdpi.png","f8722a1b5d7f0f382bf5a033679fe656"],["icon/iconxxhdpi.png","096459e0e1c2b907a25df64d56d75b7e"],["icon/iconxxxhdpi.png","68b19aed2241f8fbf0638df8368b710e"],["index.html","3594c2bfe912e3311b5695b8fe959ec6"],["manifest.json","b749826f1ceecda67338f22c9b3b0fc8"],["static/css/main.6d298fa7.css","dffa2353ef6bde36c9c26e5d43e0c4ac"],["static/js/main.42beb506.js","b49c243e445909d3fa2e9dc0e1322ee6"],["static/media/Roboto-Regular.ac3f799d.ttf","ac3f799d5bbaf5196fab15ab8de8431c"],["static/media/wallpaper.23859503.png","2385950337c18ea3f3e362849b89d3a4"]];
+var cacheName = 'sw-precache-v2-sw-precache-' + (self.registration ? self.registration.scope : '');
 
 
 var ignoreUrlParametersMatching = [/^utm_/];
@@ -111,7 +111,7 @@ var urlsToCacheKeys = new Map(
     var relativeUrl = item[0];
     var hash = item[1];
     var absoluteUrl = new URL(relativeUrl, self.location);
-    var cacheKey = createCacheKey(absoluteUrl, hashParamName, hash, false);
+    var cacheKey = createCacheKey(absoluteUrl, hashParamName, hash, /\.\w{8}\./);
     return [absoluteUrl.toString(), cacheKey];
   })
 );
