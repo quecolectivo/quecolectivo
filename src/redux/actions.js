@@ -22,7 +22,6 @@ function submitRequest (value) {
   let apikey = 'AIzaSyCU2AEu_YCQAgvOWHHDvshTnAZMKLqkxQw'
   let origin = 'La Plata, Argentina '
   let apiUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${origin + value}&key=${apikey}`
-  console.log('here')
   return axios.get(apiUrl)
 }
 

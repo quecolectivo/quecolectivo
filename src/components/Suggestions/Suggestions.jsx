@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import Paper from 'material-ui/Paper'
 import {List, ListItem} from 'material-ui/List'
 import Subheader from 'material-ui/Subheader'
@@ -8,6 +9,7 @@ import PlaceIcon from 'material-ui/svg-icons/maps/place'
 import HomeIcon from 'material-ui/svg-icons/action/home'
 import AccessIcon from 'material-ui/svg-icons/device/access-time'
 import {blue500, grey500} from 'material-ui/styles/colors'
+import Result from './Result'
 
 const styles = {
   entry: {
@@ -32,7 +34,26 @@ const Entry = (props) => (
     </Paper>
   </entry>
 )
-const Suggestions = () => (
+
+const mapEntries = (data) => data.results.map((result, index, results) =>(
+    <Result
+        key={ result.place_id }
+        result={ result }
+        hasDivider={ index !== results.length -1 } />
+));
+
+const results = (data) => {
+    "use strict";
+    if(!data || data.results.length == 0) return;
+    return (
+        <Entry>
+            <Subheader>Resultados</Subheader>
+            { mapEntries(data) }
+        </Entry>
+    );
+}
+
+const Suggestions = ({ searchData }) => (
   <suggestions style={styles.suggestions}>
     <Entry>
       <ListItem
@@ -45,62 +66,34 @@ const Suggestions = () => (
         leftIcon={<PlaceIcon color={grey500} />}
             />
     </Entry>
-    <Entry>
-      <Subheader>Lugares recientes</Subheader>
-      <ListItem
-        primaryText='Home'
-        secondaryText='Tolosa, Buenos Aires'
-        leftIcon={<HomeIcon color={grey500} />}
-            />
-      <Divider inset />
-      <ListItem
-        primaryText='Calle 7 702'
-        secondaryText='Tolosa, Buenos Aires'
-        leftIcon={<AccessIcon color={grey500} />}
-            />
-      <Divider inset />
-      <ListItem
-        primaryText='Home'
-        secondaryText='Tolosa, Buenos Aires'
-        leftIcon={<HomeIcon color={grey500} />}
-            />
-      <Divider inset />
-      <ListItem
-        primaryText='Calle 7 702'
-        secondaryText='Tolosa, Buenos Aires'
-        leftIcon={<AccessIcon color={grey500} />}
-            />
-      <Divider inset />
-      <ListItem
-        primaryText='Home'
-        secondaryText='Tolosa, Buenos Aires'
-        leftIcon={<HomeIcon color={grey500} />}
-            />
-      <Divider inset />
-      <ListItem
-        primaryText='Calle 7 702'
-        secondaryText='Tolosa, Buenos Aires'
-        leftIcon={<AccessIcon color={grey500} />}
-            />
-      <Divider inset />
-      <ListItem
-        primaryText='Home'
-        secondaryText='Tolosa, Buenos Aires'
-        leftIcon={<HomeIcon color={grey500} />}
-            />
-      <Divider inset />
-      <ListItem
-        primaryText='Calle 7 702'
-        secondaryText='Tolosa, Buenos Aires'
-        leftIcon={<AccessIcon color={grey500} />}
-            />
-      <Divider inset />
-      <ListItem
-        primaryText={<span style={{color: grey500}}>MAS DESDE TU HISTORIAL</span>}
-        insetChildren
-            />
-    </Entry>
+      {results(searchData)}
+      <Entry>
+          <Subheader>Lugares Recientes</Subheader>
+          <ListItem
+              primaryText="Home"
+              secondaryText='Tolosa, Buenos Aires'
+              leftIcon={<HomeIcon color={blue500} />}
+          />
+          <Divider inset />
+          <ListItem
+              primaryText="Calle 8 363"
+              secondaryText='Tolosa, Buenos Aires'
+              leftIcon={<AccessIcon color={grey500} />}
+          />
+          <Divider inset />
+          <ListItem
+              primaryText="Calle 7 702"
+              secondaryText='Tolosa, Buenos Aires'
+              leftIcon={<AccessIcon color={grey500} />}
+          />
+          <Divider inset />
+      </Entry>
+
   </suggestions>
 )
 
-export default Suggestions
+const mapStateToProps = (state) => ({
+    searchData: state.global.searchData
+})
+
+export default connect(mapStateToProps)(Suggestions)
