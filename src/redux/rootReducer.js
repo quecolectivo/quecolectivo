@@ -2,11 +2,17 @@ import { combineReducers } from 'redux'
 import * as mutations from './mutationsTypes'
 import {routerReducer} from 'react-router-redux'
 
-const defaultState = {}
+const defaultState = {
+  value_origin: "",
+  value_destination: ""
+}
 
 const tasks = ({
-  [ mutations.HOLA ] (state) {
-    return state
+  [ mutations.UPDATE_ORIGIN_VALUE ] (state, value) {
+    return { ...state, value_origin: value }
+  },
+  [ mutations.UPDATE_DESTINATION_VALUE ] (state, value) {
+    return { ...state, value_destination: value }
   }
 })
 

@@ -1,10 +1,12 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import muiThemeable from 'material-ui/styles/muiThemeable'
 import IconButton from 'material-ui/IconButton'
 import TextField from 'material-ui/TextField'
 import SwapVert from 'material-ui/svg-icons/action/swap-vert'
 import OriginIcon from 'material-ui/svg-icons/maps/my-location'
 import DestinationIcon from 'material-ui/svg-icons/maps/place'
+import { updateDestinationValue, updateOriginValue } from '../../redux/actions'
 
 const style = (muiTheme) => ({
   header: {
@@ -60,7 +62,7 @@ const style = (muiTheme) => ({
   }
 })
 
-const Header = ({ muiTheme }) => {
+const Header = ({ muiTheme, origin_value, destination_value, updateOriginValue, updateDestinationValue }) => {
   let styles = style(muiTheme)
   return (
     <header style={styles.header}>
@@ -75,7 +77,9 @@ const Header = ({ muiTheme }) => {
               underlineStyle={styles.searchUnderline}
               underlineFocusStyle={styles.searchUnderlineFocus}
               inputStyle={styles.searchText}
-                        />
+              value={origin_value}
+              onChange={(event) => updateOriginValue(event.value)}
+            />
           </search>
         </place>
         <place style={styles.place}>
@@ -88,7 +92,10 @@ const Header = ({ muiTheme }) => {
               underlineStyle={styles.searchUnderline}
               underlineFocusStyle={styles.searchUnderlineFocus}
               inputStyle={styles.searchText}
-                        />
+              value={destination_value}
+              onChange={(event) => updateDestinationValue(event.value)}
+
+            />
           </search>
         </place>
       </search-col>
@@ -101,4 +108,9 @@ const Header = ({ muiTheme }) => {
   )
 }
 
-export default muiThemeable()(Header)
+const mapStateToProps = (state) => ({
+  origin_value : state.origin_value,
+  destination_value: state.destination_value
+});
+
+export default muiThemeable()(connect(mapStateToProps, { updateDestinationValue, updateOriginValue } )(Header))
