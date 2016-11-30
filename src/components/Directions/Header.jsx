@@ -6,7 +6,7 @@ import TextField from 'material-ui/TextField'
 import SwapVert from 'material-ui/svg-icons/action/swap-vert'
 import OriginIcon from 'material-ui/svg-icons/maps/my-location'
 import DestinationIcon from 'material-ui/svg-icons/maps/place'
-import { updateDestinationValue, updateOriginValue } from '../../redux/actions'
+import { directionActions } from '../../redux/actions'
 
 const style = (muiTheme) => ({
   header: {
@@ -62,7 +62,7 @@ const style = (muiTheme) => ({
   }
 })
 
-const Header = ({ muiTheme, origin_value, destination_value, updateOriginValue, updateDestinationValue }) => {
+const Header = ({ muiTheme, originValue, destinationValue, updateOriginValue, updateDestinationValue, handleRequest }) => {
   let styles = style(muiTheme)
   return (
     <header style={styles.header}>
@@ -72,13 +72,15 @@ const Header = ({ muiTheme, origin_value, destination_value, updateOriginValue, 
           <search style={styles.search}>
             <TextField
               hintText='Origen'
+              id="origin"
               fullWidth
               hintStyle={styles.hintStyle}
               underlineStyle={styles.searchUnderline}
               underlineFocusStyle={styles.searchUnderlineFocus}
               inputStyle={styles.searchText}
-              value={origin_value}
-              onChange={(event) => updateOriginValue(event.value)}
+              value={originValue}
+              onChange={(event) => updateOriginValue(event.target.value)}
+              onKeyUp={(event) => handleRequest(event)}
             />
           </search>
         </place>
@@ -86,15 +88,15 @@ const Header = ({ muiTheme, origin_value, destination_value, updateOriginValue, 
           <icon style={styles.icon}><DestinationIcon style={styles.placeIcon} /></icon>
           <search style={styles.search}>
             <TextField
+              id="destination"
               hintText='Destino'
               fullWidth
               hintStyle={styles.hintStyle}
               underlineStyle={styles.searchUnderline}
               underlineFocusStyle={styles.searchUnderlineFocus}
               inputStyle={styles.searchText}
-              value={destination_value}
-              onChange={(event) => updateDestinationValue(event.value)}
-
+              value={destinationValue}
+              onChange={(event) => updateDestinationValue(event.target.value)}
             />
           </search>
         </place>
@@ -109,8 +111,8 @@ const Header = ({ muiTheme, origin_value, destination_value, updateOriginValue, 
 }
 
 const mapStateToProps = (state) => ({
-  origin_value : state.origin_value,
-  destination_value: state.destination_value
-});
+  originValue: state.global.originValue,
+  destinationValue: state.global.destinationValue
+})
 
-export default muiThemeable()(connect(mapStateToProps, { updateDestinationValue, updateOriginValue } )(Header))
+export default muiThemeable()(connect(mapStateToProps, directionActions)(Header))
