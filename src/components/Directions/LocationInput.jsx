@@ -62,10 +62,10 @@ const style = (muiTheme) => ({
   }
 })
 
-const Header = ({ muiTheme, originValue, destinationValue, updateOriginValue, updateDestinationValue, handleRequest }) => {
+const LocationInput = ({ muiTheme, originValue, destinationValue, updateOriginValue, updateDestinationValue, handleRequest }) => {
   let styles = style(muiTheme)
   return (
-    <header style={styles.header}>
+    <location-input style={styles.header}>
       <search-col style={styles.searchCol}>
         <place style={styles.place}>
           <icon style={styles.icon}><OriginIcon style={styles.placeIcon} /></icon>
@@ -106,7 +106,7 @@ const Header = ({ muiTheme, originValue, destinationValue, updateOriginValue, up
           <SwapVert />
         </IconButton>
       </swap-col>
-    </header>
+    </location-input>
   )
 }
 
@@ -115,4 +115,4 @@ const mapStateToProps = (state) => ({
   destinationValue: state.global.destinationValue
 })
 
-export default muiThemeable()(connect(mapStateToProps, directionActions)(Header))
+export default muiThemeable()(connect(mapStateToProps, directionActions)(LocationInput))

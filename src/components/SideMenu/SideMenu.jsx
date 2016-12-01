@@ -9,8 +9,8 @@ import Divider from 'material-ui/Divider'
 import ActionInfo from 'material-ui/svg-icons/action/info'
 import Wallpaper from '../../assets/images/wallpaper.png'
 
-const Menu = ({ open, handle }) => (
-  <my-menu>
+const SideMenu = ({ open, handle }) => (
+  <side-menu>
     <Drawer
       docked={false}
       width={320}
@@ -39,7 +39,7 @@ const Menu = ({ open, handle }) => (
         <ListItem primaryText='Follow up' rightIcon={<ActionInfo />} />
       </List>
     </Drawer>
-  </my-menu>
+  </side-menu>
 )
 
-export default Menu
+export default SideMenu

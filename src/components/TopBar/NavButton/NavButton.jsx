@@ -15,7 +15,7 @@ const styles = (muiTheme) => ({
   }
 })
 
-const MenuButton = props => {
+const NavButton = props => {
   const sty = styles(props.muiTheme)
   return (
     <IconButton
@@ -30,4 +30,4 @@ const MenuButton = props => {
   )
 }
 
-export default muiThemeable()(connect(getPath)(MenuButton))
+export default muiThemeable()(connect(getPath)(NavButton))

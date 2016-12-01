@@ -16,19 +16,15 @@ const style = {
   zIndex: 1
 }
 
-// onGoogleApiLoaded={({map, maps}) => console.log(map, maps)}
-/*
-*/
-
 class Map extends React.Component {
 
-  constructor(props){
+  constructor (props) {
     super(props)
-    this.state = {x: -1000, y: -1000, open : false }
+    this.state = {x: -1000, y: -1000, open: false }
   }
 
   onLoaded = ({map, maps}) => {
-    maps.event.addListener(map, "rightclick", (event) => {
+    maps.event.addListener(map, 'rightclick', (event) => {
       event.stop()
       this.setState({
         lat: event.latLng.lat(),
@@ -48,25 +44,26 @@ class Map extends React.Component {
 
   }
 
-  handleRequestClose = () => this.setState({ open : false })
+  handleRequestClose = () => this.setState({ open: false })
 
   render = () => (
-      <the-map style={style}>
-        <GoogleMap
-            bootstrapURLKeys={{key: apiKey}}
-            defaultCenter={props.center}
-            defaultZoom={props.zoom}
-            onGoogleApiLoaded={this.onLoaded}
+    <the-map style={style}>
+      <GoogleMap
+        yesIWantToUseGoogleMapApiInternals={true}
+        bootstrapURLKeys={{key: apiKey}}
+        defaultCenter={props.center}
+        defaultZoom={props.zoom}
+        onGoogleApiLoaded={this.onLoaded}
         />
-        <ContextMenu
-            x={this.state.x}
-            y={this.state.y}
-            open={this.state.open}
-            handleRequestClose={this.handleRequestClose}
-            onDestination={this.onDestination}
-            onOrigin={this.onOrigin}
+      <ContextMenu
+        x={this.state.x}
+        y={this.state.y}
+        open={this.state.open}
+        handleRequestClose={this.handleRequestClose}
+        onDestination={this.onDestination}
+        onOrigin={this.onOrigin}
         />
-      </the-map>
+    </the-map>
   )
 }
 export default Map

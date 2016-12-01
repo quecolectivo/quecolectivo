@@ -1,5 +1,5 @@
 import React from 'react'
-import Header from './Header'
+import LocationInput from './LocationInput'
 
 const styles = {
   directions: {
@@ -10,7 +10,7 @@ const styles = {
 }
 const Directions = ({ children }) => (
   <directions style={styles.directions}>
-    <Header />
+    <LocationInput />
     { children }
   </directions>
 )

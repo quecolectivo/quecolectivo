@@ -1,7 +1,7 @@
 import React from 'react'
 import muiThemeable from 'material-ui/styles/muiThemeable'
 import Paper from 'material-ui/Paper'
-import Menu from '../Menu'
+import SideMenu from '../SideMenu'
 import TopBar from '../TopBar'
 import './SidePanel.css'
 
@@ -34,17 +34,16 @@ class SidePanel extends React.Component {
     this.state = { menuOpened: false }
   }
 
-  toggleMenu = () => this.setState({ menuOpened: !this.state.menuOpened });
-
-  handleMenu = (menuOpened) => this.setState({ menuOpened });
+  openMenu = () => this.setState({menuOpened: true})
+  closeMenu = () => this.setState({menuOpened: false})
 
   render = () => (
     <side-panel id='panel' style={panelStyle}>
       <Paper style={paperStyle(this.props.muiTheme)} zDepth={2}>
-        <TopBar toggleMenu={this.toggleMenu} />
+        <TopBar openMenu={this.openMenu} />
         { this.props.children }
       </Paper>
-      <Menu handle={this.handleMenu} open={this.state.menuOpened} />
+      <SideMenu handle={this.closeMenu} open={this.state.menuOpened} />
     </side-panel>
     )
 }

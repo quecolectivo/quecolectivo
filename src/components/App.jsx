@@ -22,10 +22,10 @@ const mapsTheme = getMuiTheme({
 
 const App = ({ children }) => (
   <MuiThemeProvider muiTheme={mapsTheme}>
-    <div>
+    <app>
       <Map />
       <SidePanel>{ children }</SidePanel>
-    </div>
+    </app>
   </MuiThemeProvider>
 )
 

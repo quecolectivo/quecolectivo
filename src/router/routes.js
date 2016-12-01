@@ -7,7 +7,7 @@ import NotFound from '../components/NotFound'
 
 const routes = (
   <Route path='/' component={App}>
-    <IndexRoute component={() => (<div> Hola </div>)} />
+    <IndexRoute component={Directions} />
     <Route path='dir' component={Directions}>
       <IndexRoute component={Suggestions} />
     </Route>

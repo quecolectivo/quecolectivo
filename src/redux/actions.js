@@ -2,11 +2,13 @@ import { createAction } from 'redux-actions'
 import * as mutations from './mutationsTypes'
 import axios from 'axios'
 
+// mutations
 const updateOriginValue = createAction(mutations.UPDATE_ORIGIN_VALUE)
 const updateDestinationValue = createAction(mutations.UPDATE_DESTINATION_VALUE)
 const submitDirectionRequest = createAction(mutations.SUBMIT_DIRECTION_REQUEST, event => event.target.id)
 const dataRecieved = createAction(mutations.DATA_RECIEVED)
 
+// actions
 function handleRequest (event) {
   return (dispatch, getState) => {
     if (event.keyCode === 13) {

@@ -6,7 +6,7 @@ import SocialShare from 'material-ui/svg-icons/social/share'
 import muiThemeable from 'material-ui/styles/muiThemeable'
 import { Link } from 'react-router'
 
-import MenuButton from './MenuButton'
+import NavButton from './NavButton'
 
 const styles = (muiTheme) => ({
   topBar: {
@@ -35,33 +35,33 @@ const styles = (muiTheme) => ({
   }
 })
 
-const TopBar = ({ toggleMenu, muiTheme }) => (
-  <div style={styles(muiTheme).topBar} >
+const TopBar = ({ openMenu, muiTheme }) => (
+  <top-bar style={styles(muiTheme).topBar} >
     <hamburger style={styles(muiTheme).hamburger}>
-      <MenuButton title='Menu' onTouchTap={toggleMenu} position='bottom-right'>
+      <NavButton title='Menu' onTouchTap={openMenu} position='bottom-right'>
         <NavigationMenu />
-      </MenuButton>
+      </NavButton>
     </hamburger>
     <nav style={styles(muiTheme).navBar} >
       <nav-left style={styles(muiTheme).navBarLeft}>
         <Link to='dir'>
-          <MenuButton title='Direcciones' path='dir'>
+          <NavButton title='Direcciones' path='dir'>
             <MapDirections />
-          </MenuButton>
+          </NavButton>
         </Link>
         <Link to='recorridos'>
-          <MenuButton title='Micros' path='recorridos'>
+          <NavButton title='Micros' path='recorridos'>
             <MapDirectionsBus />
-          </MenuButton>
+          </NavButton>
         </Link>
       </nav-left>
       <nav-right style={styles(muiTheme).navBarRight}>
-        <MenuButton title='Compartir' position='bottom-left'>
+        <NavButton title='Compartir' position='bottom-left'>
           <SocialShare />
-        </MenuButton>
+        </NavButton>
       </nav-right>
     </nav>
-  </div>
+  </top-bar>
 )
 
 export default muiThemeable()(TopBar)
