@@ -20,7 +20,7 @@ class Map extends React.Component {
 
   constructor (props) {
     super(props)
-    this.state = {x: -1000, y: -1000, open: false }
+    this.state = {x: -1000, y: -1000, open: false}
   }
 
   onLoaded = ({map, maps}) => {
@@ -49,7 +49,7 @@ class Map extends React.Component {
   render = () => (
     <the-map style={style}>
       <GoogleMap
-        yesIWantToUseGoogleMapApiInternals={true}
+        yesIWantToUseGoogleMapApiInternals
         bootstrapURLKeys={{key: apiKey}}
         defaultCenter={props.center}
         defaultZoom={props.zoom}
