@@ -29,8 +29,7 @@
   "scripts": {
     "dev": "react-scripts start",
     "dev:https": "HTTPS=true yarn run dev",
-    "build": "react-scripts build",
-    "build:sw": "node scripts/build.js && sw-precache --config='config/sw-precache-config.js'",
+    "build": "react-scripts build && sw-precache --config='./sw-precache-config.js'",
     "serve": "pushstate-server build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
