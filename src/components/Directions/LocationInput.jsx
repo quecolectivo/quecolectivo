@@ -72,7 +72,7 @@ const LocationInput = ({ muiTheme, originValue, destinationValue, updateOriginVa
           <search style={styles.search}>
             <TextField
               hintText='Origen'
-              id="origin"
+              id='origin'
               fullWidth
               hintStyle={styles.hintStyle}
               underlineStyle={styles.searchUnderline}
@@ -88,7 +88,7 @@ const LocationInput = ({ muiTheme, originValue, destinationValue, updateOriginVa
           <icon style={styles.icon}><DestinationIcon style={styles.placeIcon} /></icon>
           <search style={styles.search}>
             <TextField
-              id="destination"
+              id='destination'
               hintText='Destino'
               fullWidth
               hintStyle={styles.hintStyle}
@@ -97,6 +97,7 @@ const LocationInput = ({ muiTheme, originValue, destinationValue, updateOriginVa
               inputStyle={styles.searchText}
               value={destinationValue}
               onChange={(event) => updateDestinationValue(event.target.value)}
+              onKeyUp={(event) => handleRequest(event)}
             />
           </search>
         </place>
