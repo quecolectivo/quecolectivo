@@ -7,6 +7,8 @@ const updateOriginValue = createAction(mutations.UPDATE_ORIGIN_VALUE)
 const updateDestinationValue = createAction(mutations.UPDATE_DESTINATION_VALUE)
 const submitDirectionRequest = createAction(mutations.SUBMIT_DIRECTION_REQUEST, event => event.target.id)
 const dataRecieved = createAction(mutations.DATA_RECIEVED)
+const updateOriginMarker = createAction(mutations.UPDATE_ORIGIN_MARKER)
+const updateDestinationMarker = createAction(mutations.UPDATE_DESTINATION_MARKER)
 
 // actions
 function handleRequest (event) {
@@ -20,15 +22,50 @@ function handleRequest (event) {
   }
 }
 
+let join = (obj, assingner='=', separador='&') =>
+    Object
+        .keys(obj)
+        .map((key) => key + assingner + obj[key])
+        .join(separador)
+
 function submitRequest (value) {
-  let apikey = 'AIzaSyCU2AEu_YCQAgvOWHHDvshTnAZMKLqkxQw'
-  let origin = 'La Plata, Argentina '
-  let apiUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${origin + value}&key=${apikey}`
-  return axios.get(apiUrl)
+
+    let components = {
+        administrative_area: 'La Plata',
+        country: 'AR'
+    }
+
+    let params = {
+        address: value,
+        components: join(components, ':', '|'),
+        key: 'AIzaSyCU2AEu_YCQAgvOWHHDvshTnAZMKLqkxQw'
+    }
+
+    let apiUrl = `https://maps.googleapis.com/maps/api/geocode/json?${join(params)}`
+    return axios.get(apiUrl)
 }
+
+function resultItemClick(location, address="") {
+    return (dispatch, getState) => {
+        const requestSubmitedFrom = getState().global.requestSubmitedFrom
+        if(requestSubmitedFrom === 'origin'){
+            dispatch(updateOriginValue(address))
+            //dispatch(updateOriginMarker(location))
+        }else if(requestSubmitedFrom === 'destination'){
+            dispatch(updateDestinationValue(address))
+            //dispatch(updateDestinationMarker(location))
+        }
+    }
+}
+
+
 
 export const directionActions = {
   updateOriginValue,
   updateDestinationValue,
   handleRequest
+}
+
+export const suggestionActions = {
+    resultItemClick
 }

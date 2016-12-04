@@ -21,11 +21,22 @@ const styles = {
   }
 }
 
-const mapData= (data) => data.results.map((result) => (
+const mapData = (data) => data.results.map((result) => (
   <LocationResult
     key={result.place_id}
     result={result} />
 ))
+
+const showData = (data) => {
+    if ( !data || !data.results || data.results.length === 0)
+        return (null)
+
+    return (
+        <SuggestionBlock subheader='Resultados'>
+            { mapData(data) }
+        </SuggestionBlock>
+    )
+}
 
 const Suggestions = ({ searchData }) => (
 
@@ -37,9 +48,7 @@ const Suggestions = ({ searchData }) => (
         leftIcon={<PlaceIcon color={grey500} />} />
     </SuggestionBlock>
 
-    <SuggestionBlock subheader='Resultados'>
-      { mapData(searchData) }
-    </SuggestionBlock>
+      { showData(searchData) }
 
     <SuggestionBlock subheader='Lugares Recientes'>
       <ListItem primaryText='Home' secondaryText='Tolosa, Buenos Aires'
