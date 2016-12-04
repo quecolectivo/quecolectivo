@@ -22,43 +22,40 @@ function handleRequest (event) {
   }
 }
 
-let join = (obj, assingner='=', separador='&') =>
+let join = (obj, assingner = '=', separador = '&') =>
     Object
         .keys(obj)
         .map((key) => key + assingner + obj[key])
         .join(separador)
 
 function submitRequest (value) {
+  let components = {
+    administrative_area: 'La Plata',
+    country: 'AR'
+  }
 
-    let components = {
-        administrative_area: 'La Plata',
-        country: 'AR'
-    }
+  let params = {
+    address: value,
+    components: join(components, ':', '|'),
+    key: 'AIzaSyCU2AEu_YCQAgvOWHHDvshTnAZMKLqkxQw'
+  }
 
-    let params = {
-        address: value,
-        components: join(components, ':', '|'),
-        key: 'AIzaSyCU2AEu_YCQAgvOWHHDvshTnAZMKLqkxQw'
-    }
-
-    let apiUrl = `https://maps.googleapis.com/maps/api/geocode/json?${join(params)}`
-    return axios.get(apiUrl)
+  let apiUrl = `https://maps.googleapis.com/maps/api/geocode/json?${join(params)}`
+  return axios.get(apiUrl)
 }
 
-function resultItemClick(location, address="") {
-    return (dispatch, getState) => {
-        const requestSubmitedFrom = getState().global.requestSubmitedFrom
-        if(requestSubmitedFrom === 'origin'){
-            dispatch(updateOriginValue(address))
-            //dispatch(updateOriginMarker(location))
-        }else if(requestSubmitedFrom === 'destination'){
-            dispatch(updateDestinationValue(address))
-            //dispatch(updateDestinationMarker(location))
-        }
+function resultItemClick (location, address = '') {
+  return (dispatch, getState) => {
+    const requestSubmitedFrom = getState().global.requestSubmitedFrom
+    if (requestSubmitedFrom === 'origin') {
+      dispatch(updateOriginValue(address))
+      dispatch(updateOriginMarker(location))
+    } else if (requestSubmitedFrom === 'destination') {
+      dispatch(updateDestinationValue(address))
+      dispatch(updateDestinationMarker(location))
     }
+  }
 }
-
-
 
 export const directionActions = {
   updateOriginValue,
@@ -67,5 +64,5 @@ export const directionActions = {
 }
 
 export const suggestionActions = {
-    resultItemClick
+  resultItemClick
 }
