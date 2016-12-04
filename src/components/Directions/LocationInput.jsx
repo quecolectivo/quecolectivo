@@ -62,7 +62,8 @@ const style = (muiTheme) => ({
   }
 })
 
-const LocationInput = ({ muiTheme, originValue, destinationValue, updateOriginValue, updateDestinationValue, handleRequest }) => {
+const LocationInput = ({ muiTheme, originValue, destinationValue,
+    updateOriginValue, updateDestinationValue, handleRequest }) => {
   let styles = style(muiTheme)
   return (
     <location-input style={styles.header}>

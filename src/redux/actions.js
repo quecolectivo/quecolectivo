@@ -22,6 +22,33 @@ function handleRequest (event) {
   }
 }
 
+function resultItemClick (location, address = '') {
+  return (dispatch, getState) => {
+    const requestSubmitedFrom = getState().global.requestSubmitedFrom
+    if (requestSubmitedFrom === 'origin') {
+      dispatch(updateOriginValue(address))
+      dispatch(updateOriginMarker(location))
+    } else if (requestSubmitedFrom === 'destination') {
+      dispatch(updateDestinationValue(address))
+      dispatch(updateDestinationMarker(location))
+    }
+  }
+}
+
+export function getLocationFromBrowser () {
+  return (dispatch, getState) => {
+    if ('geolocation' in navigator) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        let lat = position.coords.latitude.toString()
+        let long = position.coords.longitude.toString()
+        console.log(lat,long)
+      }, response => console.log('error', response))
+    } else {
+      window.alert('geolocation not found')
+    }
+  }
+}
+
 let join = (obj, assingner = '=', separador = '&') =>
     Object
         .keys(obj)
@@ -44,23 +71,10 @@ function submitRequest (value) {
   return axios.get(apiUrl)
 }
 
-function resultItemClick (location, address = '') {
-  return (dispatch, getState) => {
-    const requestSubmitedFrom = getState().global.requestSubmitedFrom
-    if (requestSubmitedFrom === 'origin') {
-      dispatch(updateOriginValue(address))
-      dispatch(updateOriginMarker(location))
-    } else if (requestSubmitedFrom === 'destination') {
-      dispatch(updateDestinationValue(address))
-      dispatch(updateDestinationMarker(location))
-    }
-  }
-}
-
 export const directionActions = {
   updateOriginValue,
   updateDestinationValue,
-  handleRequest
+  handleRequest,
 }
 
 export const suggestionActions = {

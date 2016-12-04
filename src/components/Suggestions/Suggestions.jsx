@@ -8,6 +8,7 @@ import AccessIcon from 'material-ui/svg-icons/device/access-time'
 import {blue500, grey500} from 'material-ui/styles/colors'
 
 import {getSearchData} from '../../redux/getters.js'
+import {getLocationFromBrowser} from '../../redux/actions.js'
 import LocationResult from './LocationResult'
 import SuggestionBlock from './SuggestionBlock'
 
@@ -28,32 +29,35 @@ const mapData = (results) => results.map((result) => (
 ))
 
 const showData = (data) => {
-    if ( !data || !data.results || data.results.length === 0)
-        return (null)
+  if (!data || !data.results || data.results.length === 0) {
+    return (null)
+  }
 
-    let results = data.results.filter((result) => result.place_id !== 'ChIJ4y8KScLeopURniKCiwyf1mw');
+  let results = data.results.filter((result) => result.place_id !== 'ChIJ4y8KScLeopURniKCiwyf1mw')
 
-    if ( !results || results.length === 0)
-        return (null)
+  if (!results || results.length === 0) {
+    return (null)
+  }
 
-    return (
-        <SuggestionBlock subheader='Resultados'>
-            { mapData(results) }
-        </SuggestionBlock>
-    )
+  return (
+    <SuggestionBlock subheader='Resultados'>
+      { mapData(results) }
+    </SuggestionBlock>
+  )
 }
 
-const Suggestions = ({ searchData }) => (
+const Suggestions = ({ searchData, getLocationFromBrowser }) => (
 
   <suggestions style={styles.suggestions}>
     <SuggestionBlock>
       <ListItem primaryText='Tu ubicacion'
+        onTouchTap={getLocationFromBrowser}
         leftIcon={<LocationIcon color={blue500} />} />
       <ListItem primaryText='Elegir desde el mapa'
         leftIcon={<PlaceIcon color={grey500} />} />
     </SuggestionBlock>
 
-      { showData(searchData) }
+    { showData(searchData) }
 
     <SuggestionBlock subheader='Lugares Recientes'>
       <ListItem primaryText='Home' secondaryText='Tolosa, Buenos Aires'
@@ -67,4 +71,7 @@ const Suggestions = ({ searchData }) => (
   </suggestions>
 )
 
-export default connect(getSearchData)(Suggestions)
+const mapDispatchToProps = {
+  getLocationFromBrowser
+}
+export default connect(getSearchData, mapDispatchToProps)(Suggestions)
