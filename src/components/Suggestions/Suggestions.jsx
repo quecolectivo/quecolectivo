@@ -21,7 +21,7 @@ const styles = {
   }
 }
 
-const mapData = (data) => data.results.map((result) => (
+const mapData = (results) => results.map((result) => (
   <LocationResult
     key={result.place_id}
     result={result} />
@@ -31,9 +31,14 @@ const showData = (data) => {
     if ( !data || !data.results || data.results.length === 0)
         return (null)
 
+    let results = data.results.filter((result) => result.place_id !== 'ChIJ4y8KScLeopURniKCiwyf1mw');
+
+    if ( !results || results.length === 0)
+        return (null)
+
     return (
         <SuggestionBlock subheader='Resultados'>
-            { mapData(data) }
+            { mapData(results) }
         </SuggestionBlock>
     )
 }

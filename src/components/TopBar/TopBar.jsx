@@ -44,13 +44,13 @@ const TopBar = ({ openMenu, muiTheme }) => (
     </hamburger>
     <nav style={styles(muiTheme).navBar} >
       <nav-left style={styles(muiTheme).navBarLeft}>
-        <Link to='dir'>
-          <NavButton title='Direcciones' path='dir'>
+        <Link to='/dir'>
+          <NavButton title='Direcciones' path='/dir'>
             <MapDirections />
           </NavButton>
         </Link>
-        <Link to='recorridos'>
-          <NavButton title='Micros' path='recorridos'>
+        <Link to='/recorridos'>
+          <NavButton title='Micros' path='/recorridos'>
             <MapDirectionsBus />
           </NavButton>
         </Link>

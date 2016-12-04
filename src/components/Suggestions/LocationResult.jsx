@@ -38,11 +38,11 @@ const getRepresentation = (result) => {
     if (result.types.includes('point_of_interest') || result.types.includes('establishment')) {
         primaryText = joinComponents([component.name])
         secondaryText = joinComponents([component.street.route, component.locality, component.administrative.level1])
-    } else if (result.types.includes('street_address') || result.types.includes('route')) {
-        primaryText = joinComponents([component.street.route, component.street.number], " ")
-        secondaryText = joinComponents([component.locality, component.administrative.level1])
     } else if (result.types.includes('intersection')) {
         primaryText = joinComponents(component.street.routes, " y ")
+        secondaryText = joinComponents([component.locality, component.administrative.level1])
+    } else if (result.types.includes('street_address') || result.types.includes('route')) {
+        primaryText = joinComponents([component.street.route, component.street.number], " ")
         secondaryText = joinComponents([component.locality, component.administrative.level1])
     } else if (result.types.includes('locality')) {
         primaryText = joinComponents([component.locality], " ")

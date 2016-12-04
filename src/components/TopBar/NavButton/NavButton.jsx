@@ -22,6 +22,7 @@ const NavButton = props => {
       tooltip={props.title}
       touch
       style={props.currentPath === props.path ? sty.buttonStyle : null}
+      disableTouchRipple={props.currentPath === props.path}
       iconStyle={sty.iconButton}
       onTouchTap={props.onTouchTap}
       tooltipPosition={props.position}>
