@@ -5,21 +5,25 @@ import AccessIcon from 'material-ui/svg-icons/device/access-time'
 import {grey500} from 'material-ui/styles/colors'
 import { suggestionActions } from '../../redux/actions'
 
-const filterByType = (result, type) =>
+const findByType = (result, type) =>
     result.address_components.find((component) => component.types.includes(type))
 
+const filterByType = (result, type) =>
+    result.address_components.filter((component) => component.types.includes(type))
+
 const mapResultToComponent = (result) => ({
-    name: filterByType(result, 'point_of_interest') || filterByType(result, 'establishment'),
+    name: findByType(result, 'point_of_interest') || findByType(result, 'establishment'),
     street: {
-        route: filterByType(result, 'route'),
-        number: filterByType(result, 'street_number')
+        route: findByType(result, 'route'),
+        routes: filterByType(result, 'route'),
+        number: findByType(result, 'street_number')
     },
-    locality: filterByType(result, 'locality'),
+    locality: findByType(result, 'locality'),
     administrative: {
-        level1: filterByType(result, 'administrative_area_level_1'),
-        level2: filterByType(result, 'administrative_area_level_2')
+        level1: findByType(result, 'administrative_area_level_1'),
+        level2: findByType(result, 'administrative_area_level_2')
     },
-    country : filterByType(result, 'country')
+    country : findByType(result, 'country')
 });
 
 const joinComponents = (components, separador=", ") =>
@@ -32,15 +36,21 @@ const getRepresentation = (result) => {
     let primaryText, secondaryText
 
     let component = mapResultToComponent(result)
-    if(component.name){
-        primaryText = joinComponents([component.name], " ")
+    if(result.types.includes('point_of_interest') || result.types.includes('establishment')){
+        primaryText = joinComponents([component.name])
         secondaryText = joinComponents([component.street.route, component.locality, component.administrative.level1])
-    }else if(component.street.route){
+    }else if(result.types.includes('street_address') || result.types.includes('route')){
         primaryText = joinComponents([component.street.route, component.street.number], " ")
         secondaryText = joinComponents([component.locality, component.administrative.level1])
-    }else{
+    }else if(result.types.includes('intersection')){
+        primaryText = joinComponents(component.street.routes, " y ")
+        secondaryText = joinComponents([component.locality, component.administrative.level1])
+    }else if(result.types.includes('locality')){
         primaryText = joinComponents([component.locality], " ")
         secondaryText = joinComponents([component.administrative.level2, component.administrative.level1, component.country])
+    }else if(result.types.includes('administrative_area_level_2')){
+        primaryText = joinComponents([component.administrative.level2])
+        secondaryText = joinComponents([component.administrative.level1, component.country])
     }
 
     return ({
