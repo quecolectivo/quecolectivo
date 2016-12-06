@@ -30,11 +30,12 @@
     "dev": "react-scripts start",
     "dev:https": "HTTPS=true yarn run dev",
     "build": "react-scripts build && sw-precache --config='./sw-precache-config.js'",
+    "build:serve": "yarn run build && yarn run serve",
     "serve": "pushstate-server build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "deploy": "gh-pages -d build",
-    "buildanddeploy": "yarn run build && yarn run deploy",
+    "build:deploy": "yarn run build && yarn run deploy",
     "lint": "cd src && standard || exit 0",
     "lint:fix": "cd src && standard --fix || exit 0"
   },

@@ -62,8 +62,7 @@ const style = (muiTheme) => ({
   }
 })
 
-const LocationInput = ({ muiTheme, originValue, destinationValue,
-    updateOriginValue, updateDestinationValue, handleRequest }) => {
+const LocationInput = ({ muiTheme, updateTextValue, originValue, destinationValue, handleRequest }) => {
   let styles = style(muiTheme)
   return (
     <location-input style={styles.header}>
@@ -80,7 +79,7 @@ const LocationInput = ({ muiTheme, originValue, destinationValue,
               underlineFocusStyle={styles.searchUnderlineFocus}
               inputStyle={styles.searchText}
               value={originValue}
-              onChange={(event) => updateOriginValue(event.target.value)}
+              onChange={(event) => updateTextValue(event.target.value, 'origin')}
               onKeyUp={(event) => handleRequest(event)}
             />
           </search>
@@ -97,7 +96,7 @@ const LocationInput = ({ muiTheme, originValue, destinationValue,
               underlineFocusStyle={styles.searchUnderlineFocus}
               inputStyle={styles.searchText}
               value={destinationValue}
-              onChange={(event) => updateDestinationValue(event.target.value)}
+              onChange={(event) => updateTextValue(event.target.value, 'destination')}
               onKeyUp={(event) => handleRequest(event)}
             />
           </search>

@@ -11,7 +11,7 @@ import NavButton from './NavButton'
 const styles = (muiTheme) => ({
   topBar: {
     background: muiTheme.palette.primary1Color,
-    height: 48,
+    height: 54,
     padding: '8px 8px 0',
     display: 'flex',
     flexDirection: 'row',
