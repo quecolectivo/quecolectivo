@@ -12,6 +12,7 @@ const submitDirectionRequest = createAction(mutations.SUBMIT_DIRECTION_REQUEST, 
 const dataRecieved = createAction(mutations.DATA_RECIEVED)
 const updateOriginMarker = createAction(mutations.UPDATE_ORIGIN_MARKER)
 const updateDestinationMarker = createAction(mutations.UPDATE_DESTINATION_MARKER)
+const setActiveTextField = createAction(mutations.SET_ACTIVE_TEXT_FIELD)
 
 //
 // actions
@@ -29,7 +30,7 @@ function updateTextValue (value, target = null) {
 // update marker wrapper to abstract which marker is currently being updated
 function updateMarker (value, target = null) {
   return (dispatch, getState) => {
-    if (!target) { target = getState().global.requestSubmittedFrom }
+    if (!target) { target = getState().global.activeTextField }
     if (target === 'origin') dispatch(updateOriginMarker(value))
     else if (target === 'destination') dispatch(updateDestinationMarker(value))
   }
@@ -90,7 +91,8 @@ function submitRequest (value) {
 // export actions to be used as component callbacks
 export const directionActions = {
   updateTextValue,
-  handleRequest
+  handleRequest,
+  setActiveTextField
 }
 export const suggestionActions = {
   resultItemClick

@@ -13,7 +13,8 @@ const style = (muiTheme) => ({
     backgroundColor: muiTheme.palette.primary1Color,
     padding: '8px 8px 24px',
     display: 'flex',
-    flexDirection: 'row'
+    flexDirection: 'row',
+    boxShadow: 'rgba(0, 0, 0, 0.156863) 0px 4px 4px -2px, rgba(0, 0, 0, 0.227451) 0px 4px 4px -2px'
   },
   searchCol: {
     display: 'flex',
@@ -62,7 +63,7 @@ const style = (muiTheme) => ({
   }
 })
 
-const LocationInput = ({ muiTheme, updateTextValue, originValue, destinationValue, handleRequest }) => {
+const LocationInput = ({ muiTheme, updateTextValue, originValue, destinationValue, handleRequest, setActiveTextField }) => {
   let styles = style(muiTheme)
   return (
     <location-input style={styles.header}>
@@ -79,6 +80,7 @@ const LocationInput = ({ muiTheme, updateTextValue, originValue, destinationValu
               underlineFocusStyle={styles.searchUnderlineFocus}
               inputStyle={styles.searchText}
               value={originValue}
+              onFocus={() => setActiveTextField('origin')}
               onChange={(event) => updateTextValue(event.target.value, 'origin')}
               onKeyUp={(event) => handleRequest(event)}
             />
@@ -96,6 +98,7 @@ const LocationInput = ({ muiTheme, updateTextValue, originValue, destinationValu
               underlineFocusStyle={styles.searchUnderlineFocus}
               inputStyle={styles.searchText}
               value={destinationValue}
+              onFocus={() => setActiveTextField('destination')}
               onChange={(event) => updateTextValue(event.target.value, 'destination')}
               onKeyUp={(event) => handleRequest(event)}
             />
