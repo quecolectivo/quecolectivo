@@ -50,7 +50,8 @@ const style = (muiTheme) => ({
   hintStyle: {
     color: 'rgba(255, 255, 255, 0.5)',
     fontWeight: 100,
-    fontSize: 14
+    fontSize: 14,
+    zIndex: '1 !important'
   },
   searchText: {
     color: 'rgba(255, 255, 255, 0.9)'

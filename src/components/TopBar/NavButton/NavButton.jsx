@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import muiThemeable from 'material-ui/styles/muiThemeable'
 
 import {getPath} from '../../../redux/getters'
+import './NavButton.css'
 
 const styles = (muiTheme) => ({
   iconButton: {
@@ -12,6 +13,9 @@ const styles = (muiTheme) => ({
   buttonStyle: {
     backgroundColor: '#3367D6',
     borderRadius: '100%'
+  },
+  tooltip: {
+    zIndex: 9999
   }
 })
 
@@ -19,7 +23,9 @@ const NavButton = props => {
   const sty = styles(props.muiTheme)
   return (
     <IconButton
+      className="navButton"
       tooltip={props.title}
+      tooltipStyles={sty.tooltip}
       touch
       style={props.currentPath === props.path ? sty.buttonStyle : null}
       disableTouchRipple={props.currentPath === props.path}
