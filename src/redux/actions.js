@@ -39,6 +39,7 @@ export function updateMarker (value, target = null) {
 function handleRequest (event) {
   return (dispatch, getState) => {
     if (event.keyCode === 13) {
+      event.target.blur()
       dispatch(submitDirectionRequest(event))
       submitRequest(event.target.value).then(data => {
         dispatch(dataRecieved(data.data))

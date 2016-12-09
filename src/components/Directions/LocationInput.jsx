@@ -14,7 +14,8 @@ const style = (muiTheme) => ({
     padding: '8px 8px 24px',
     display: 'flex',
     flexDirection: 'row',
-    boxShadow: 'rgba(0, 0, 0, 0.156863) 0px 4px 4px -2px, rgba(0, 0, 0, 0.227451) 0px 4px 4px -2px'
+    boxShadow: 'rgba(0, 0, 0, 0.156863) 0px 4px 4px -2px, rgba(0, 0, 0, 0.227451) 0px 4px 4px -2px',
+    zIndex: 100
   },
   searchCol: {
     display: 'flex',

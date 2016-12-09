@@ -12,7 +12,7 @@ const filterByType = (result, type) =>
     result.address_components.filter((component) => component.types.includes(type))
 
 const mapResultToComponent = (result) => ({
-  name: findByType(result, 'point_of_interest') || findByType(result, 'establishment'),
+  name: findByType(result, 'point_of_interest') || findByType(result, 'establishment') || findByType(result, 'premise'),
   street: {
     route: findByType(result, 'route'),
     routes: filterByType(result, 'route'),
@@ -35,7 +35,7 @@ const joinComponents = (components, separador = ', ') =>
 const getRepresentation = (result) => {
   let primaryText, secondaryText
   let component = mapResultToComponent(result)
-  if (result.types.includes('point_of_interest') || result.types.includes('establishment')) {
+  if (result.types.includes('point_of_interest') || result.types.includes('establishment') || result.types.includes('premise')) {
     primaryText = joinComponents([component.name])
     secondaryText = joinComponents([component.street.route, component.locality, component.administrative.level1])
   } else if (result.types.includes('intersection')) {
