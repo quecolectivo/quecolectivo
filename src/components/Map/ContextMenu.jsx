@@ -4,6 +4,9 @@ import Menu from 'material-ui/Menu'
 import MenuItem from 'material-ui/MenuItem'
 import OriginIcon from 'material-ui/svg-icons/maps/my-location'
 import DestinationIcon from 'material-ui/svg-icons/maps/place'
+import {connect} from 'react-redux'
+
+import {updateMarker} from '../../redux/actions'
 
 const style = (x, y) => ({
   paper: {
@@ -21,7 +24,7 @@ const style = (x, y) => ({
   }
 })
 
-const ContextMenu = ({ x, y, open, onDestination, onOrigin, handleRequestClose }) => {
+const ContextMenu = ({ x, y, lat, lng, open, setDestination, setOrigin, handleRequestClose, updateMarker }) => {
   if (!open) return null
 
   return (
@@ -34,12 +37,12 @@ const ContextMenu = ({ x, y, open, onDestination, onOrigin, handleRequestClose }
         onRequestClose={handleRequestClose}
             >
         <Menu width={220}>
-          <MenuItem primaryText='Desde aquí' leftIcon={<OriginIcon />} onTouchTap={onOrigin} />
-          <MenuItem primaryText='Hasta aquí' leftIcon={<DestinationIcon />} onTouchTap={onDestination} />
+          <MenuItem primaryText='Desde aquí' leftIcon={<OriginIcon />} onTouchTap={() => updateMarker({lat, lng}, 'origin')} />
+          <MenuItem primaryText='Hasta aquí' leftIcon={<DestinationIcon />} onTouchTap={() => updateMarker({lat, lng}, 'destination')} />
         </Menu>
       </Popover>
     </context-menu>
   )
 }
 
-export default ContextMenu
+export default connect(null, {updateMarker})(ContextMenu)

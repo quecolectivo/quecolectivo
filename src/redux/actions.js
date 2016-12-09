@@ -28,7 +28,7 @@ function updateTextValue (value, target = null) {
 }
 
 // update marker wrapper to abstract which marker is currently being updated
-function updateMarker (value, target = null) {
+export function updateMarker (value, target = null) {
   return (dispatch, getState) => {
     if (!target) { target = getState().global.activeTextField }
     if (target === 'origin') dispatch(updateOriginMarker(value))
