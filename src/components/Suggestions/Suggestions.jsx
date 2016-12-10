@@ -8,7 +8,7 @@ import AccessIcon from 'material-ui/svg-icons/device/access-time'
 import {blue500, grey500} from 'material-ui/styles/colors'
 
 import {getSearchData} from '../../redux/getters.js'
-import {getLocationFromBrowser} from '../../redux/actions.js'
+import {setLocation} from '../../redux/actions.js'
 import LocationResult from './LocationResult'
 import SuggestionBlock from './SuggestionBlock'
 
@@ -46,12 +46,12 @@ const showData = (data) => {
   )
 }
 
-const Suggestions = ({ searchData, getLocationFromBrowser }) => (
+const Suggestions = ({ searchData, setLocation }) => (
 
   <suggestions style={styles.suggestions}>
     <SuggestionBlock>
       <ListItem primaryText='Tu ubicacion'
-        onTouchTap={getLocationFromBrowser}
+        onTouchTap={() => setLocation()}
         leftIcon={<LocationIcon color={blue500} />} />
       <ListItem primaryText='Elegir desde el mapa'
         leftIcon={<PlaceIcon color={grey500} />} />
@@ -72,6 +72,6 @@ const Suggestions = ({ searchData, getLocationFromBrowser }) => (
 )
 
 const mapDispatchToProps = {
-  getLocationFromBrowser
+  setLocation
 }
 export default connect(getSearchData, mapDispatchToProps)(Suggestions)

@@ -14,8 +14,7 @@ const style = (muiTheme) => ({
     padding: '8px 8px 24px',
     display: 'flex',
     flexDirection: 'row',
-    boxShadow: 'rgba(0, 0, 0, 0.156863) 0px 4px 4px -2px, rgba(0, 0, 0, 0.227451) 0px 4px 4px -2px',
-    zIndex: 100
+    boxShadow: 'rgba(0, 0, 0, 0.156863) 0px 4px 4px -2px, rgba(0, 0, 0, 0.227451) 0px 4px 4px -2px'
   },
   searchCol: {
     display: 'flex',
@@ -24,8 +23,8 @@ const style = (muiTheme) => ({
   },
   swapCol: {
     display: 'flex',
-    flexDirection: 'col',
-    alignItems: 'center'
+    flexDirection: 'column',
+    justifyContent: 'center'
   },
   iconButton: {
     color: muiTheme.palette.alternateTextColor
@@ -51,8 +50,7 @@ const style = (muiTheme) => ({
   hintStyle: {
     color: 'rgba(255, 255, 255, 0.5)',
     fontWeight: 100,
-    fontSize: 14,
-    zIndex: '1 !important'
+    fontSize: 14
   },
   searchText: {
     color: 'rgba(255, 255, 255, 0.9)'

@@ -21,7 +21,7 @@ const setActiveTextField = createAction(mutations.SET_ACTIVE_TEXT_FIELD)
 // update text value wrapper to abstract which field is currently being updated
 function updateTextValue (value, target = null) {
   return (dispatch, getState) => {
-    if (!target) { target = getState().global.requestSubmittedFrom }
+    if (!target) { target = getState().global.activeTextField }
     if (target === 'origin') dispatch(updateOriginValue(value))
     else if (target === 'destination') dispatch(updateDestinationValue(value))
   }
@@ -55,25 +55,49 @@ function resultItemClick (location, address = '') {
   }
 }
 
-export function getLocationFromBrowser () {
-  return (dispatch, getState) => {
+function getLocationFromBrowser () {
+  return new Promise((resolve, reject) => {
     if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition((position) => {
         let lat = position.coords.latitude.toString()
         let lng = position.coords.longitude.toString()
-        dispatch(updateMarker({lat, lng}))
-      }, response => console.log('error', response))
+        resolve({lat, lng})
+      },
+      response => {
+        console.log('error', response)
+        reject()
+      },
+        {
+          enableHighAccuracy: true
+        })
     } else {
       window.alert('geolocation not found')
+      reject()
     }
+  }
+  )
+}
+
+export function setLocation (latlong = null, target = null) {
+  return async (dispatch, getState) => {
+    if (!latlong) { latlong = await getLocationFromBrowser() }
+    dispatch(updateMarker(latlong, target))
+    const geocodingData = await reverseGeocoding(latlong)
+    const formattedAddress = geocodingData.data.results[0].formatted_address
+    dispatch(updateTextValue(formattedAddress, target))
   }
 }
 
+function reverseGeocoding ({lat, lng}) {
+  const apiKey = 'AIzaSyCU2AEu_YCQAgvOWHHDvshTnAZMKLqkxQw'
+  const apiUrl = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${apiKey}`
+  return axios.get(apiUrl)
+}
 
-function submitRequest (value) {
-  let join = (obj, assingner = '=', separador = '&') => Object.keys(obj)
+let join = (obj, assingner = '=', separador = '&') => Object.keys(obj)
         .map((key) => key + assingner + obj[key])
         .join(separador)
+function submitRequest (value) {
   let components = {
     administrative_area: 'La Plata',
     country: 'AR'
@@ -87,7 +111,6 @@ function submitRequest (value) {
 
   return axios.get(apiUrl)
 }
-
 
 // export actions to be used as component callbacks
 export const directionActions = {

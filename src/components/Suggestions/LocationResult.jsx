@@ -50,6 +50,9 @@ const getRepresentation = (result) => {
   } else if (result.types.includes('administrative_area_level_2')) {
     primaryText = joinComponents([component.administrative.level2])
     secondaryText = joinComponents([component.administrative.level1, component.country])
+  } else if (result.types.includes('postal_code')) {
+    primaryText = joinComponents([component.administrative.level2])
+    secondaryText = joinComponents([component.administrative.level1, component.country])
   }
 
   return ({

@@ -10,7 +10,7 @@ const defaultState = {
   searchData: {
     results: []
   },
-  requestSubmittedFrom: 'origin'
+  activeTextField: 'origin'
 }
 
 const tasks = ({

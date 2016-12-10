@@ -15,7 +15,7 @@ const styles = (muiTheme) => ({
     borderRadius: '100%'
   },
   tooltip: {
-    zIndex: 9999
+    zIndex: 999
   }
 })
 
