@@ -10,7 +10,9 @@ const defaultState = {
   searchData: {
     results: []
   },
-  activeTextField: 'origin'
+  activeTextField: 'origin',
+  routeData: {
+  }
 }
 
 const tasks = ({
@@ -40,6 +42,12 @@ const tasks = ({
     return {
       ...state,
       activeTextField: textField}
+  },
+  [mutations.UPDATE_ROUTE_DATA] (state, data) {
+    return {
+      ...state,
+      routeData: data
+    }
   }
 })
 
