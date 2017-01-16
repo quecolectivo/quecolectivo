@@ -14,7 +14,7 @@ const updateOriginMarker = createAction(mutations.UPDATE_ORIGIN_MARKER)
 const updateDestinationMarker = createAction(mutations.UPDATE_DESTINATION_MARKER)
 const setActiveTextField = createAction(mutations.SET_ACTIVE_TEXT_FIELD)
 const updateRouteData = createAction(mutations.UPDATE_ROUTE_DATA)
-
+export const setSelectedRoute = createAction(mutations.SET_SELECTED_ROUTE)
 //
 // actions
 //
@@ -83,7 +83,6 @@ function searchRoutes () {
   return (dispatch, getState) => {
     const {origin, destination} = getState().global.markers
     const apiURL = `http://localhost:8000/api/search/${origin.lat},${origin.lng}/${destination.lat},${destination.lng}/100`
-    console.log(apiURL)
     axios.get(apiURL)
       .then(response => {
         dispatch(updateRouteData(response))
