@@ -1,7 +1,7 @@
 import { createAction } from 'redux-actions'
 import * as mutations from './mutationsTypes'
 import axios from 'axios'
-
+import { push } from 'react-router-redux'
 //
 // mutations
 //
@@ -82,11 +82,13 @@ function getLocationFromBrowser () {
 function searchRoutes () {
   return (dispatch, getState) => {
     const {origin, destination} = getState().global.markers
-    console.log(origin, destination)
-    const apiURL = `https://crossorigin.me/http://serianox.duckdns.org:8000/api/search/${origin.lat},${origin.lng}/${destination.lat},${destination.lng}/100`
+    const apiURL = `http://localhost:8000/api/search/${origin.lat},${origin.lng}/${destination.lat},${destination.lng}/100`
     console.log(apiURL)
     axios.get(apiURL)
-      .then(response => dispatch(updateRouteData(response)))
+      .then(response => {
+        dispatch(updateRouteData(response))
+        dispatch(push('/dir/results'))
+      })
   }
 }
 
