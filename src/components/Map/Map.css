@@ -1,0 +1,11 @@
+.leaflet-container {
+    height: 100%;
+    width: 100%;
+}
+
+the-map {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+}

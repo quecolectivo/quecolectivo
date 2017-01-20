@@ -1,7 +1,7 @@
 import { createAction } from 'redux-actions'
 import * as mutations from './mutationsTypes'
 import axios from 'axios'
-
+import { push } from 'react-router-redux'
 //
 // mutations
 //
@@ -13,7 +13,8 @@ const dataRecieved = createAction(mutations.DATA_RECIEVED)
 const updateOriginMarker = createAction(mutations.UPDATE_ORIGIN_MARKER)
 const updateDestinationMarker = createAction(mutations.UPDATE_DESTINATION_MARKER)
 const setActiveTextField = createAction(mutations.SET_ACTIVE_TEXT_FIELD)
-
+const updateRouteData = createAction(mutations.UPDATE_ROUTE_DATA)
+export const setSelectedRoute = createAction(mutations.SET_SELECTED_ROUTE)
 //
 // actions
 //
@@ -78,16 +79,44 @@ function getLocationFromBrowser () {
   )
 }
 
-export function setLocation (latlong = null, target = null) {
-  return async (dispatch, getState) => {
-    if (!latlong) { latlong = await getLocationFromBrowser() }
-    dispatch(updateMarker(latlong, target))
-    const geocodingData = await reverseGeocoding(latlong)
-    const formattedAddress = geocodingData.data.results[0].formatted_address
-    dispatch(updateTextValue(formattedAddress, target))
+function searchRoutes () {
+  return (dispatch, getState) => {
+    const {origin, destination} = getState().global.markers
+    const apiURL = `http://localhost:8000/api/search/${origin.lat},${origin.lng}/${destination.lat},${destination.lng}/100`
+    axios.get(apiURL)
+      .then(response => {
+        dispatch(updateRouteData(response))
+        dispatch(push('/dir/results'))
+      })
   }
 }
 
+function nextAction () {
+  return (dispatch, getState) => {
+    const { activeTextField } = getState().global
+    if (activeTextField==='origin'){
+      dispatch(setActiveTextField('destination'))
+    } else if (activeTextField === 'destination'){
+      dispatch(searchRoutes())
+    }
+  }
+}
+export function setLocation (latlng = null, target = null) {
+  return async (dispatch, getState) => {
+    if (!latlng) { latlng = await getLocationFromBrowser() }
+    dispatch(updateMarker(latlng, target))
+    const geocodingData = await reverseGeocoding(latlng)
+    const formattedAddress = geocodingData.data.results[0].formatted_address
+    dispatch(updateTextValue(formattedAddress, target))
+    dispatch(nextAction())
+  }
+}
+export function setLocationAndNext (latlng=null, target=null){
+  return (dispatch, getState) => {
+    dispatch(setLocation(latlng, target))
+    // dispatch(nextAction())
+  }
+}
 function reverseGeocoding ({lat, lng}) {
   const apiKey = 'AIzaSyCU2AEu_YCQAgvOWHHDvshTnAZMKLqkxQw'
   const apiUrl = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${apiKey}`

@@ -1,0 +1,33 @@
+location-input {
+  padding: 8px 8px 24px;
+  display: flex;
+  flex-direction: row;
+  box-shadow: rgba(0, 0, 0, 0.156863) 0px 4px 4px -2px, rgba(0, 0, 0, 0.227451) 0px 4px 4px -2px;
+}
+search-col {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 2;
+}
+swap-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+place {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+icon {
+  display: flex;
+  padding: 14;
+}
+search {
+  display: 'flex';
+  flex-grow: 2;
+}
+.placeIcon {
+  width: 20;
+  height: 20;
+}

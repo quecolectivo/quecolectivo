@@ -2,8 +2,8 @@ import React from 'react'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import { blue100, blue800 } from 'material-ui/styles/colors'
-import Map from './Map'
-import SidePanel from './SidePanel'
+import Map from './Map/Map'
+import SidePanel from './SidePanel/SidePanel'
 
 // const lightTheme = getMuiTheme({
 //   palette: {

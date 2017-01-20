@@ -7,40 +7,18 @@ import SwapVert from 'material-ui/svg-icons/action/swap-vert'
 import OriginIcon from 'material-ui/svg-icons/maps/my-location'
 import DestinationIcon from 'material-ui/svg-icons/maps/place'
 import { directionActions } from '../../redux/actions'
+import './LocationInput.css'
 
 const style = (muiTheme) => ({
   header: {
     backgroundColor: muiTheme.palette.primary1Color,
-    padding: '8px 8px 24px',
-    display: 'flex',
-    flexDirection: 'row',
-    boxShadow: 'rgba(0, 0, 0, 0.156863) 0px 4px 4px -2px, rgba(0, 0, 0, 0.227451) 0px 4px 4px -2px'
-  },
-  searchCol: {
-    display: 'flex',
-    flexDirection: 'column',
-    flexGrow: 2
-  },
-  swapCol: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center'
   },
   iconButton: {
     color: muiTheme.palette.alternateTextColor
   },
-  place: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center'
-  },
   icon: {
     display: 'flex',
     padding: 14
-  },
-  search: {
-    display: 'flex',
-    flexGrow: 2
   },
   placeIcon: {
     color: muiTheme.palette.alternateTextColor,
@@ -67,10 +45,10 @@ const LocationInput = ({ muiTheme, updateTextValue, originValue, destinationValu
   let styles = style(muiTheme)
   return (
     <location-input style={styles.header}>
-      <search-col style={styles.searchCol}>
-        <place style={styles.place}>
+      <search-col>
+        <place>
           <icon style={styles.icon}><OriginIcon style={styles.placeIcon} /></icon>
-          <search style={styles.search}>
+          <search>
             <TextField
               hintText='Origen'
               id='origin'
@@ -86,9 +64,9 @@ const LocationInput = ({ muiTheme, updateTextValue, originValue, destinationValu
             />
           </search>
         </place>
-        <place style={styles.place}>
-          <icon style={styles.icon}><DestinationIcon style={styles.placeIcon} /></icon>
-          <search style={styles.search}>
+        <place>
+          <icon style={styles.icon}><DestinationIcon style={styles.placeIcon}/></icon>
+          <search>
             <TextField
               id='destination'
               hintText='Destino'
@@ -105,7 +83,7 @@ const LocationInput = ({ muiTheme, updateTextValue, originValue, destinationValu
           </search>
         </place>
       </search-col>
-      <swap-col style={styles.swapCol}>
+      <swap-col>
         <IconButton iconStyle={styles.iconButton}>
           <SwapVert />
         </IconButton>

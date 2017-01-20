@@ -5,12 +5,17 @@ import {routerReducer} from 'react-router-redux'
 const defaultState = {
   originValue: '',
   destinationValue: '',
-  markers: {
-  },
+  markers: {},
   searchData: {
     results: []
   },
-  activeTextField: 'origin'
+  activeTextField: 'origin',
+  routeData: {
+    data: {
+      results: [1, 2, 3, 4]
+    }
+  },
+  selectedRoute: {}
 }
 
 const tasks = ({
@@ -27,19 +32,32 @@ const tasks = ({
     return {...state, searchData: data}
   },
   [mutations.UPDATE_ORIGIN_MARKER] (state, location) {
-    let newState = { ...state }
+    let newState = {...state}
     newState.markers.origin = location
     return newState
   },
   [mutations.UPDATE_DESTINATION_MARKER] (state, location) {
-    let newState = { ...state }
+    let newState = {...state}
     newState.markers.destination = location
     return newState
   },
   [mutations.SET_ACTIVE_TEXT_FIELD] (state, textField) {
     return {
       ...state,
-      activeTextField: textField}
+      activeTextField: textField
+    }
+  },
+  [mutations.UPDATE_ROUTE_DATA] (state, data) {
+    return {
+      ...state,
+      routeData: data
+    }
+  },
+  [mutations.SET_SELECTED_ROUTE] (state, route) {
+    return {
+      ...state,
+      selectedRoute: route
+    }
   }
 })
 
