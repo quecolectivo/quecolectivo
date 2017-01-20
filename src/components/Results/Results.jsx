@@ -8,9 +8,8 @@ import SuggestionBlock from '../Suggestions/SuggestionBlock'
 import {getRouteData} from '../../redux/getters'
 import {setRoute, setSelectedRoute} from '../../redux/actions'
 
-const styles = {
-  results: {}
-}
+import './Results.css'
+
 
 
 const Results = ({routeData, setSelectedRoute}) => {
@@ -37,7 +36,7 @@ const Results = ({routeData, setSelectedRoute}) => {
   }
 
   return (
-    <results style={styles.results}>
+    <results>
       { renderResults() }
     </results>
   )

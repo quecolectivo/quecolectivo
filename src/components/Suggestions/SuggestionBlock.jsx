@@ -4,12 +4,7 @@ import {List} from 'material-ui/List'
 import Subheader from 'material-ui/Subheader'
 import Divider from 'material-ui/Divider'
 
-const styles = {
-  suggestionBlock: {
-    padding: '7px 10px',
-    display: 'block'
-  }
-}
+import './SuggestionBlock.css'
 
 const renderChildren = children => children.map((child, index, children) => {
   const items = children.length
@@ -24,7 +19,7 @@ const renderChildren = children => children.map((child, index, children) => {
 const SuggestionBlock = ({children, subheader}) => {
   if (children) {
     return (
-      <suggestion-block style={styles.suggestionBlock}>
+      <suggestion-block>
         <Paper>
           <List>
             { subheader ? <Subheader> {subheader} </Subheader> : null}

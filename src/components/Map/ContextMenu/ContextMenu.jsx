@@ -9,18 +9,9 @@ import {connect} from 'react-redux'
 import {updateMarker} from '../../redux/actions'
 
 const style = (x, y) => ({
-  paper: {
-    display: 'inline-block',
-    float: 'left',
-    margin: '16px 32px 16px 0'
-  },
   menu: {
-    position: 'absolute',
-    width: 256,
     top: y,
     left: x,
-    display: 'block',
-    zIndex: 100
   }
 })
 
@@ -30,7 +21,7 @@ const ContextMenu = ({ x, y, lat, lng, open, setDestination, setOrigin, handleRe
   return (
     <context-menu style={style(x, y).menu}>
       <Popover
-        style={style(x, y).paper}
+        id="popover"
         open={open}
         anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
         targetOrigin={{horizontal: 'left', vertical: 'top'}}

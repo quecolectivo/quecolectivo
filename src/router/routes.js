@@ -3,7 +3,7 @@ import {Route, IndexRoute} from 'react-router'
 import App from '../components/App'
 import Directions from '../components/Directions/Directions'
 import Suggestions from '../components/Suggestions/Suggestions'
-import NotFound from '../components/NotFound/'
+import NotFound from '../components/NotFound/NotFound'
 import Results from '../components/Results/Results'
 
 const routes = (

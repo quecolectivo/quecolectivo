@@ -1,15 +1,9 @@
 import React from 'react'
 import LocationInput from './LocationInput'
+import './Directions.css'
 
-const styles = {
-  directions: {
-    display: 'flex',
-    flexDirection: 'column',
-    flex: '1 1 auto'
-  }
-}
 const Directions = ({ children }) => (
-  <directions style={styles.directions}>
+  <directions>
     <LocationInput />
     { children }
   </directions>

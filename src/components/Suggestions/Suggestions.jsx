@@ -11,16 +11,7 @@ import {getSearchData} from '../../redux/getters.js'
 import {setLocation} from '../../redux/actions.js'
 import LocationResult from './LocationResult'
 import SuggestionBlock from './SuggestionBlock'
-
-const styles = {
-  suggestions: {
-    display: 'flex',
-    flexDirection: 'column',
-    flex: '1 1 0',
-    overflowY: 'scroll',
-    padding: '5px 0'
-  }
-}
+import './Suggestions.css'
 
 const mapData = (results) => results.map((result) => (
   <LocationResult
@@ -48,7 +39,7 @@ const showData = (data) => {
 
 const Suggestions = ({ searchData, setLocation }) => (
 
-  <suggestions style={styles.suggestions}>
+  <suggestions>
     <SuggestionBlock>
       <ListItem primaryText='Tu ubicacion'
         onTouchTap={() => setLocation()}

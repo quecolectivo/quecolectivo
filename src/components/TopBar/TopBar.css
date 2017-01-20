@@ -1,0 +1,25 @@
+top-bar {
+  height: 54px;
+  padding: 8px 8px 0,;
+  display: flex;
+  flex-direction: row;
+  flex: none;
+  z-index: 1;
+}
+
+nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-grow: 2;
+}
+
+nav-left {
+  display: flex;
+  flex-direction: row;  
+}
+
+nav-right {
+  display: flex;
+  flex-direction: row;
+}

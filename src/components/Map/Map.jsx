@@ -13,29 +13,11 @@ import {
   ZoomControl
 } from 'react-leaflet'
 const {BaseLayer, Overlay} = LayersControl
-// import GoogleMap from 'google-map-react'
-// import PlaceIcon from 'material-ui/svg-icons/maps/place'
-// import {blue300, blue600} from 'material-ui/styles/colors'
 
 import {getMarkers, getHoverRoute, getSelectedRoute} from '../../redux/getters'
 import {setLocationAndNext} from '../../redux/actions'
 
-// import ContextMenu from './ContextMenu'
-// import Marker from './Marker'
 import './Map.css'
-
-
-const props = {
-  center: {lat: -34.921512, lng: -57.954216},
-  zoom: 14
-}
-
-const style = {
-  position: 'absolute',
-  height: '100%',
-  width: '100%',
-  zIndex: 1,
-}
 
 
 class TheMap extends React.Component {
@@ -43,62 +25,12 @@ class TheMap extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      // x: -1000,
-      // y: -1000,
-      // open: false,
       lat: 51.505,
       lng: -0.09,
-      zoom: 13
+      zoom: 14,
+      center: {lat: -34.921512, lng: -57.954216}
     }
   }
-
-  // onLoaded = ({map, maps}) => {
-  //   maps.event.addListener(map, 'rightclick', (event) => {
-  //     event.stop()
-  //     this.setState({
-  //       lat: event.latLng.lat(),
-  //       lng: event.latLng.lng(),
-  //       x: event.pixel.x,
-  //       y: event.pixel.y,
-  //       open: true
-  //     })
-  //   }, map.data.addGeoJson(mydata2))
-  // }
-
-  // handleRequestClose = () => this.setState({open: false})
-
-  // renderOriginMarker = (markers) => {
-  //   if (this.props.originMarker) {
-  //     markers.push(
-  //       <Marker
-  //         key='originMarker'
-  //         color={blue300}
-  //         lat={this.props.originMarker.lat}
-  //         lng={this.props.originMarker.lng}
-  //         Icon={PlaceIcon}/>
-  //     )
-  //   }
-  // }
-  //
-  // renderDestinationMarker = (markers) => {
-  //   if (this.props.destinationMarker) {
-  //     markers.push(
-  //       <Marker
-  //         key='destinationMarker'
-  //         color={blue600}
-  //         lat={this.props.destinationMarker.lat}
-  //         lng={this.props.destinationMarker.lng}
-  //         Icon={PlaceIcon}/>
-  //     )
-  //   }
-  // }
-
-  // renderMarkers = () => {
-  //   let markers = []
-  //   this.renderOriginMarker(markers)
-  //   this.renderDestinationMarker(markers)
-  //   return markers
-  // }
 
   renderOsmMarkers = () => {
     let markers = []
@@ -133,25 +65,8 @@ class TheMap extends React.Component {
     }
     return markers
   }
-  // <GoogleMap
-  // yesIWantToUseGoogleMapApiInternals
-  // bootstrapURLKeys={{key: apiKey}}
-  // defaultCenter={props.center}
-  // defaultZoom={props.zoom}
-  // onGoogleApiLoaded={this.onLoaded}>
-  // { this.renderMarkers() }
-  // </GoogleMap>
-
-// <ContextMenu
-// x={this.state.x}
-// y={this.state.y}
-// lat={this.state.lat}
-// lng={this.state.lng}
-// open={this.state.open}
-// handleRequestClose={this.handleRequestClose}
-// />
+  
   renderRoutes = () => {
-    console.log(this.props.selectedRoute)
     if (this.props.selectedRoute && this.props.selectedRoute.geojson) {
       return (
         <GeoJSON key={this.props.selectedRoute.pid} data={JSON.parse(this.props.selectedRoute.geojson)}/>
@@ -160,11 +75,11 @@ class TheMap extends React.Component {
   }
 
   render = () => (
-    <the-map style={style}>
+    <the-map>
 
       <Map
-        center={props.center}
-        zoom={props.zoom}
+        center={this.state.center}
+        zoom={this.state.zoom}
         zoomControl={false}
         ref="map"
         attributionControl={false}
@@ -184,7 +99,7 @@ class TheMap extends React.Component {
             />
           </BaseLayer>
           <Overlay name='Marker with popup'>
-            <Marker position={props.center}>
+            <Marker position={this.state.center}>
               <Popup>
                 <span>A pretty CSS3 popup. <br /> Easily customizable.</span>
               </Popup>
@@ -192,10 +107,10 @@ class TheMap extends React.Component {
           </Overlay>
           <Overlay name='Layer group with circles'>
             <LayerGroup>
-              <Circle center={props.center} fillColor='blue' radius={200}/>
-              <Circle center={props.center} fillColor='red' radius={100} stroke={false}/>
+              <Circle center={this.state.center} fillColor='blue' radius={200}/>
+              <Circle center={this.state.center} fillColor='red' radius={100} stroke={false}/>
               <LayerGroup>
-                <Circle center={props.center} color='green' fillColor='green' radius={100}/>
+                <Circle center={this.state.center} color='green' fillColor='green' radius={100}/>
               </LayerGroup>
             </LayerGroup>
           </Overlay>
@@ -204,7 +119,7 @@ class TheMap extends React.Component {
               <Popup>
                 <span>Popup in FeatureGroup</span>
               </Popup>
-              <Circle center={props.center} radius={200}/>
+              <Circle center={this.state.center} radius={200}/>
             </FeatureGroup>
           </Overlay>
         </LayersControl>
