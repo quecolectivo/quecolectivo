@@ -1,8 +1,11 @@
-location-input {
+location-container {
   padding: 8px 8px 24px;
   display: flex;
   flex-direction: row;
   box-shadow: rgba(0, 0, 0, 0.156863) 0px 4px 4px -2px, rgba(0, 0, 0, 0.227451) 0px 4px 4px -2px;
+}
+location-input {
+  margin-bottom: 5px;
 }
 search-col {
   display: flex;
@@ -18,16 +21,23 @@ place {
   display: flex;
   flex-direction: row;
   align-items: center;
+  height: 48px;
 }
 icon {
   display: flex;
   padding: 14;
 }
 search {
-  display: 'flex';
+  display: flex;
   flex-grow: 2;
 }
 .placeIcon {
   width: 20;
   height: 20;
+}
+
+@media screen and (max-width: 414px) {
+    location-input {
+      height: 195px;
+    }
 }

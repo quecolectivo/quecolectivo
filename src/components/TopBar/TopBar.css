@@ -1,6 +1,6 @@
 top-bar {
-  height: 54px;
-  padding: 8px 8px 0,;
+  height: 50px;
+  padding: 8px 8px 0;
   display: flex;
   flex-direction: row;
   flex: none;

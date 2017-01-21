@@ -3,5 +3,4 @@ suggestions {
   flex-direction: column;
   flex: 1 1 0;
   overflow-y: scroll;
-  padding: 5px 0;
 }

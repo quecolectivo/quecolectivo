@@ -19,10 +19,9 @@ import {setLocationAndNext} from '../../redux/actions'
 
 import './Map.css'
 
-
 class TheMap extends React.Component {
 
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {
       lat: 51.505,
@@ -37,14 +36,14 @@ class TheMap extends React.Component {
     if (this.props.originMarker) {
       let originLocation = {lat: parseFloat(this.props.originMarker.lat), lng: parseFloat(this.props.originMarker.lng)}
       markers.push([
-          <Marker
-            draggable
-            ref='originMarker'
-            position={originLocation}
-            onDragend={() => this.props.setLocationAndNext(this.refs.originMarker.leafletElement.getLatLng(), 'origin')}
+        <Marker
+          draggable
+          ref='originMarker'
+          position={originLocation}
+          onDragend={() => this.props.setLocationAndNext(this.refs.originMarker.leafletElement.getLatLng(), 'origin')}
           />,
-          < Circle center={originLocation} fillColor='blue' radius={200}/>
-        ]
+        < Circle center={originLocation} fillColor='blue' radius={200} />
+      ]
       )
     }
     if (this.props.destinationMarker) {
@@ -53,23 +52,33 @@ class TheMap extends React.Component {
         lng: parseFloat(this.props.destinationMarker.lng)
       }
       markers.push([
-          <Marker
-            draggable
-            ref='destinationMarker'
-            position={destinationLocation}
-            onDragend={() => this.props.setLocationAndNext(this.refs.destinationMarker.leafletElement.getLatLng(), 'destination')}
+        <Marker
+          draggable
+          ref='destinationMarker'
+          position={destinationLocation}
+          onDragend={() => this.props.setLocationAndNext(this.refs.destinationMarker.leafletElement.getLatLng(), 'destination')}
           />,
-          <Circle center={destinationLocation} fillColor='blue' radius={200}/>
-        ]
+        <Circle center={destinationLocation} fillColor='blue' radius={200} />
+      ]
       )
     }
     return markers
   }
-  
-  renderRoutes = () => {
+
+  renderSelectedRoute = () => {
     if (this.props.selectedRoute && this.props.selectedRoute.geojson) {
+      let selectedStyle = {color: '#4285F4', weight: 7, opacity: '1'}
       return (
-        <GeoJSON key={this.props.selectedRoute.pid} data={JSON.parse(this.props.selectedRoute.geojson)}/>
+        <GeoJSON key={'s' + this.props.selectedRoute.pid} data={JSON.parse(this.props.selectedRoute.geojson)} style={selectedStyle} />
+      )
+    }
+  }
+
+  renderHoverRoute = () => {
+    if (this.props.hoverRoute && this.props.hoverRoute.geojson) {
+      let hoverStyle = {color: 'gray', weight: 4, opacity: '0.8'}
+      return (
+        <GeoJSON key={'h' + this.props.hoverRoute.pid} data={JSON.parse(this.props.hoverRoute.geojson)} style={hoverStyle} />
       )
     }
   }
@@ -81,16 +90,16 @@ class TheMap extends React.Component {
         center={this.state.center}
         zoom={this.state.zoom}
         zoomControl={false}
-        ref="map"
+        ref='map'
         attributionControl={false}
         onClick={(e) => this.props.setLocationAndNext(e.latlng)}
       >
         {this.renderOsmMarkers()}
-        <ZoomControl position='topright'/>
+        <ZoomControl position='topright' />
         <LayersControl position='bottomright'>
           <BaseLayer checked name='OpenStreetMap.Mapnik'>
             <TileLayer
-              url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
+              url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
             />
           </BaseLayer>
           <BaseLayer name='OpenStreetMap.BlackAndWhite'>
@@ -107,10 +116,10 @@ class TheMap extends React.Component {
           </Overlay>
           <Overlay name='Layer group with circles'>
             <LayerGroup>
-              <Circle center={this.state.center} fillColor='blue' radius={200}/>
-              <Circle center={this.state.center} fillColor='red' radius={100} stroke={false}/>
+              <Circle center={this.state.center} fillColor='blue' radius={200} />
+              <Circle center={this.state.center} fillColor='red' radius={100} stroke={false} />
               <LayerGroup>
-                <Circle center={this.state.center} color='green' fillColor='green' radius={100}/>
+                <Circle center={this.state.center} color='green' fillColor='green' radius={100} />
               </LayerGroup>
             </LayerGroup>
           </Overlay>
@@ -119,13 +128,13 @@ class TheMap extends React.Component {
               <Popup>
                 <span>Popup in FeatureGroup</span>
               </Popup>
-              <Circle center={this.state.center} radius={200}/>
+              <Circle center={this.state.center} radius={200} />
             </FeatureGroup>
           </Overlay>
         </LayersControl>
 
-        { this.renderRoutes() }
-
+        { this.renderSelectedRoute() }
+        { this.renderHoverRoute() }
       </Map>
     </the-map>
   )

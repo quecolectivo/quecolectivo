@@ -2,21 +2,7 @@ import {combineReducers} from 'redux'
 import * as mutations from './mutationsTypes'
 import {routerReducer} from 'react-router-redux'
 
-const defaultState = {
-  originValue: '',
-  destinationValue: '',
-  markers: {},
-  searchData: {
-    results: []
-  },
-  activeTextField: 'origin',
-  routeData: {
-    data: {
-      results: [1, 2, 3, 4]
-    }
-  },
-  selectedRoute: {}
-}
+import defaultState from './defaultState'
 
 const tasks = ({
   [mutations.UPDATE_ORIGIN_VALUE] (state, value) {
@@ -57,6 +43,12 @@ const tasks = ({
     return {
       ...state,
       selectedRoute: route
+    }
+  },
+  [mutations.SET_HOVER_ROUTE] (state, route) {
+    return {
+      ...state,
+      hoverRoute: route
     }
   }
 })

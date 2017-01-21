@@ -11,6 +11,7 @@ import {getSearchData} from '../../redux/getters.js'
 import {setLocation} from '../../redux/actions.js'
 import LocationResult from './LocationResult'
 import SuggestionBlock from './SuggestionBlock'
+
 import './Suggestions.css'
 
 const mapData = (results) => results.map((result) => (

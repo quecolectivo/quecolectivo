@@ -15,6 +15,7 @@ const updateDestinationMarker = createAction(mutations.UPDATE_DESTINATION_MARKER
 const setActiveTextField = createAction(mutations.SET_ACTIVE_TEXT_FIELD)
 const updateRouteData = createAction(mutations.UPDATE_ROUTE_DATA)
 export const setSelectedRoute = createAction(mutations.SET_SELECTED_ROUTE)
+export const setHoverRoute = createAction(mutations.SET_HOVER_ROUTE)
 //
 // actions
 //
@@ -82,10 +83,23 @@ function getLocationFromBrowser () {
 function searchRoutes () {
   return (dispatch, getState) => {
     const {origin, destination} = getState().global.markers
-    const apiURL = `http://localhost:8000/api/search/${origin.lat},${origin.lng}/${destination.lat},${destination.lng}/100`
+    const apiURL = `http://localhost:8000/api/search/${origin.lat},${origin.lng}/${destination.lat},${destination.lng}/500`
     axios.get(apiURL)
       .then(response => {
-        dispatch(updateRouteData(response))
+        let results = response.data.results
+        let normResults = {
+          byId: results.reduce((pv, cv) => { 
+          pv[cv.pid] = cv 
+          return pv 
+        }, {}),
+        allIds: results.map(e => e.pid)
+      }
+        let normResponse = response
+        normResponse.data.results = normResults
+        return normResponse
+      })
+      .then(results => {
+        dispatch(updateRouteData(results))
         dispatch(push('/dir/results'))
       })
   }
@@ -94,9 +108,9 @@ function searchRoutes () {
 function nextAction () {
   return (dispatch, getState) => {
     const { activeTextField } = getState().global
-    if (activeTextField==='origin'){
+    if (activeTextField === 'origin') {
       dispatch(setActiveTextField('destination'))
-    } else if (activeTextField === 'destination'){
+    } else if (activeTextField === 'destination') {
       dispatch(searchRoutes())
     }
   }
@@ -111,7 +125,7 @@ export function setLocation (latlng = null, target = null) {
     dispatch(nextAction())
   }
 }
-export function setLocationAndNext (latlng=null, target=null){
+export function setLocationAndNext (latlng = null, target = null) {
   return (dispatch, getState) => {
     dispatch(setLocation(latlng, target))
     // dispatch(nextAction())

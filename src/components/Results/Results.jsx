@@ -6,23 +6,25 @@ import Bus from 'material-ui/svg-icons/maps/directions-bus'
 
 import SuggestionBlock from '../Suggestions/SuggestionBlock'
 import {getRouteData} from '../../redux/getters'
-import {setRoute, setSelectedRoute} from '../../redux/actions'
+import {setRoute, setSelectedRoute, setHoverRoute} from '../../redux/actions'
 
 import './Results.css'
 
-
-
-const Results = ({routeData, setSelectedRoute}) => {
+const Results = ({routeData, setSelectedRoute, setHoverRoute}) => {
   const mapData = () => {
-    return routeData.data.results.map((result, index) => (
+    return routeData.data.results.allIds.map((pid, index) => {
+      const result = routeData.data.results.byId[pid]
+      return (
       <ListItem
-        primaryText={result.ref || "placeholder"}
+        primaryText={result.ref || 'placeholder'}
         key={result.pid || index}
-        secondaryText={result.pid || "placeholder"}
+        secondaryText={result.name || 'placeholder'}
         onTouchTap={() => setSelectedRoute(result)}
-        leftIcon={<Bus color={blue500}/>}
+        leftIcon={<Bus color={blue500} />}
+        onMouseEnter={() => setHoverRoute(result)}
       />
-    ))
+    )}
+    )
   }
   const renderResults = () => {
     if (!routeData || !routeData.data || !routeData.data.results || routeData.data.results.length === 0) {
@@ -42,6 +44,6 @@ const Results = ({routeData, setSelectedRoute}) => {
   )
 }
 
-const mapDispatchToProps = {setRoute, setSelectedRoute}
+const mapDispatchToProps = {setRoute, setSelectedRoute, setHoverRoute}
 const mapStateToProps = getRouteData
 export default connect(mapStateToProps, mapDispatchToProps)(Results)
