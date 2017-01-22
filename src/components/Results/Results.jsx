@@ -16,7 +16,7 @@ const Results = ({routeData, setSelectedRoute, setHoverRoute}) => {
       const result = routeData.data.results.byId[pid]
       return (
       <ListItem
-        primaryText={result.ref || 'placeholder'}
+        primaryText={result.ref + ', ' + result.pid || 'placeholder'}
         key={result.pid || index}
         secondaryText={result.name || 'placeholder'}
         onTouchTap={() => setSelectedRoute(result)}
