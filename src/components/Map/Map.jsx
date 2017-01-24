@@ -69,7 +69,7 @@ class TheMap extends React.Component {
     if (this.props.selectedRoute && this.props.selectedRoute.geojson) {
       let selectedStyle = {color: '#4285F4', weight: 7, opacity: '1'}
       return (
-        <GeoJSON key={'s' + this.props.selectedRoute.pid} data={JSON.parse(this.props.selectedRoute.geojson)} style={selectedStyle} />
+        <GeoJSON key={'s' + this.props.selectedRoute.osm_id} data={JSON.parse(this.props.selectedRoute.geojson)} style={selectedStyle} />
       )
     }
   }
@@ -78,7 +78,7 @@ class TheMap extends React.Component {
     if (this.props.hoverRoute && this.props.hoverRoute.geojson) {
       let hoverStyle = {color: 'gray', weight: 4, opacity: '0.8'}
       return (
-        <GeoJSON key={'h' + this.props.hoverRoute.pid} data={JSON.parse(this.props.hoverRoute.geojson)} style={hoverStyle} />
+        <GeoJSON key={'h' + this.props.hoverRoute.osm_id} data={JSON.parse(this.props.hoverRoute.geojson)} style={hoverStyle} />
       )
     }
   }

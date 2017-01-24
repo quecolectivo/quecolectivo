@@ -12,18 +12,19 @@ import './Results.css'
 
 const Results = ({routeData, setSelectedRoute, setHoverRoute}) => {
   const mapData = () => {
-    return routeData.data.results.allIds.map((pid, index) => {
-      const result = routeData.data.results.byId[pid]
+    return routeData.data.results.allIds.map((osmId, index) => {
+      const result = routeData.data.results.byId[osmId]
       return (
-      <ListItem
-        primaryText={result.ref + ', ' + result.pid || 'placeholder'}
-        key={result.pid || index}
-        secondaryText={result.name || 'placeholder'}
-        onTouchTap={() => setSelectedRoute(result)}
-        leftIcon={<Bus color={blue500} />}
-        onMouseEnter={() => setHoverRoute(result)}
+        <ListItem
+          primaryText={result.ref + ', ' + result.osm_id || 'placeholder'}
+          key={result.osm_id || index}
+          secondaryText={result.name || 'placeholder'}
+          onTouchTap={() => setSelectedRoute(result)}
+          leftIcon={<Bus color={blue500} />}
+          onMouseEnter={() => setHoverRoute(result)}
       />
-    )}
+      )
+    }
     )
   }
   const renderResults = () => {
