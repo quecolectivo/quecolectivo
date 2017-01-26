@@ -83,21 +83,8 @@ function getLocationFromBrowser () {
 function searchRoutes () {
   return (dispatch, getState) => {
     const {origin, destination} = getState().global.markers
-    const apiURL = `http://localhost:8000/api/search/${origin.lat},${origin.lng}/${destination.lat},${destination.lng}/200`
+    const apiURL = `http://ec2-52-67-239-128.sa-east-1.compute.amazonaws.com/api/search/${origin.lat},${origin.lng}/${destination.lat},${destination.lng}/200`
     axios.get(apiURL)
-      .then(response => {
-        let results = response.data.results
-        let normResults = {
-          byId: results.reduce((pv, cv) => { 
-          pv[cv.osm_id] = cv 
-          return pv 
-        }, {}),
-        allIds: results.map(e => e.osm_id)
-      }
-        let normResponse = response
-        normResponse.data.results = normResults
-        return normResponse
-      })
       .then(results => {
         dispatch(updateRouteData(results))
         dispatch(push('/dir/results'))
