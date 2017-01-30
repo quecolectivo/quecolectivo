@@ -83,7 +83,7 @@ function getLocationFromBrowser () {
 function searchRoutes () {
   return (dispatch, getState) => {
     const {origin, destination} = getState().global.markers
-    const apiURL = `http://ec2-52-67-239-128.sa-east-1.compute.amazonaws.com/api/search/${origin.lat},${origin.lng}/${destination.lat},${destination.lng}/200`
+    const apiURL = `https://quecolectivo.duckdns.org/api/search/${origin.lat},${origin.lng}/${destination.lat},${destination.lng}/500`
     axios.get(apiURL)
       .then(results => {
         dispatch(updateRouteData(results))
