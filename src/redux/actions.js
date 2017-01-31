@@ -43,8 +43,17 @@ function handleRequest (event) {
     if (event.keyCode === 13) {
       event.target.blur()
       dispatch(submitDirectionRequest(event))
-      submitRequest(event.target.value).then(data => {
+      submitRequest(event.target.value)
+      .then(data => {
         dispatch(dataRecieved(data.data))
+      })
+      .then(() => {
+        try {
+          const bestResult = getState().global.searchData.results[0]
+          dispatch(updateTextValue(bestResult.formatted_address))
+          dispatch(updateMarker(bestResult.geometry.location))
+          dispatch(nextAction())
+        } catch (e) { console.error(e) }
       })
     }
   }
@@ -54,6 +63,7 @@ function resultItemClick (location, address = '') {
   return (dispatch, getState) => {
     dispatch(updateTextValue(address))
     dispatch(updateMarker(location))
+    dispatch(nextAction())
   }
 }
 
@@ -127,6 +137,7 @@ function reverseGeocoding ({lat, lng}) {
 let join = (obj, assingner = '=', separador = '&') => Object.keys(obj)
         .map((key) => key + assingner + obj[key])
         .join(separador)
+
 function submitRequest (value) {
   let components = {
     administrative_area: 'La Plata',

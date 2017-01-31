@@ -14,11 +14,12 @@ const Results = ({routeData, setSelectedRoute, setHoverRoute}) => {
   const mapData = () => {
     return routeData.data.results.allIds.map((osmId, index) => {
       const result = routeData.data.results.byId[osmId]
+      const [name, direction] = result.name.split(':')
       return (
         <ListItem
-          primaryText={result.ref + ', ' + result.osm_id || 'placeholder'}
+          primaryText={name || 'placeholder'}
           key={result.osm_id || index}
-          secondaryText={result.name || 'placeholder'}
+          secondaryText={direction || 'placeholder'}
           onTouchTap={() => setSelectedRoute(result)}
           leftIcon={<Bus color={blue500} />}
           onMouseEnter={() => setHoverRoute(result)}
@@ -32,7 +33,7 @@ const Results = ({routeData, setSelectedRoute, setHoverRoute}) => {
       return (null)
     }
     return (
-      <SuggestionBlock subheader='Lugares Recientes'>
+      <SuggestionBlock subheader='Resultados'>
         {mapData()}
       </SuggestionBlock>
     )

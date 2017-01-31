@@ -54,9 +54,9 @@ const Suggestions = ({ searchData, setLocation }) => (
     <SuggestionBlock subheader='Lugares Recientes'>
       <ListItem primaryText='Home' secondaryText='Tolosa, Buenos Aires'
         leftIcon={<HomeIcon color={blue500} />} />
-      <ListItem primaryText='Calle 8 363' secondaryText='Tolosa, Buenos Aires'
+      <ListItem primaryText='Placeholder 1' secondaryText='La Plata, Buenos Aires'
         leftIcon={<AccessIcon color={grey500} />} />
-      <ListItem primaryText='Calle 7 702' secondaryText='Tolosa, Buenos Aires'
+      <ListItem primaryText='Placeholder 2' secondaryText='La Plata, Buenos Aires'
         leftIcon={<AccessIcon color={grey500} />} />
     </SuggestionBlock>
 
