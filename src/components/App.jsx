@@ -4,7 +4,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import { blue100, blue800 } from 'material-ui/styles/colors'
 import Map from './Map/Map'
 import SidePanel from './SidePanel/SidePanel'
-
+import './App.css'
 // const lightTheme = getMuiTheme({
 //   palette: {
 //     primary1Color: blue600,

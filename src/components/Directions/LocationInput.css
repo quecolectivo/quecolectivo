@@ -37,7 +37,4 @@ search {
 }
 
 @media screen and (max-width: 414px) {
-    location-input {
-      height: 195px;
-    }
 }
