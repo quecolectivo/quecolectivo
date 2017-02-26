@@ -4,16 +4,17 @@ directions {
   width: inherit;
 }
 
-directions content{
+directions content {
   position: absolute;
-  margin-top: 192px;
+  top: 192px;
   display: flex;
-  z-index: -1;
+  z-index: 1;
   width: inherit;
   bottom: 0;
-  top: 0;
 }
-
-directions content > * {
-  z-index: 8;
+directions content.pulldown {
+  height: 200px;
+  bottom: 0;
+  top: initial;
+  display: block;
 }
