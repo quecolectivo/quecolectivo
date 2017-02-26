@@ -45,15 +45,9 @@ const Results = ({ routeData, setSelectedRoute, setHoverRoute }) => {
   }
 
   return (
-    <div>
-    <Paper style={{ width: 'inherit', display: 'flex' }} zDepth={1} rounded={false} >
-    <div>
     <results>
       {renderResults()}
     </results>
-    </div>
-    </Paper>
-    </div>
   )
 }
 

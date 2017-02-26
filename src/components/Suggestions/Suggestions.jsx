@@ -41,7 +41,6 @@ const showData = data => {
 }
 
 const Suggestions = ({ searchData, setLocation }) => (
-  <Paper style={{ width: 'inherit', display: 'flex' }} zDepth={1} rounded={false} >
   <suggestions>
     <SuggestionBlock>
       <ListItem
@@ -73,7 +72,6 @@ const Suggestions = ({ searchData, setLocation }) => (
       />
     </SuggestionBlock>
   </suggestions>
-  </Paper>
 )
 
 const mapDispatchToProps = { setLocation }
