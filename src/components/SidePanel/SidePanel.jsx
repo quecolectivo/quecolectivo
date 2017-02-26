@@ -21,10 +21,8 @@ class SidePanel extends React.Component {
 
   render = () => (
     <side-panel id='panel'>
-      <Paper className="panel-paper" style={paperStyle(this.props.muiTheme)} zDepth={2}>
         <TopBar openMenu={this.openMenu} />
         { this.props.children }
-      </Paper>
       <SideMenu handle={this.closeMenu} open={this.state.menuOpened} />
     </side-panel>
     )

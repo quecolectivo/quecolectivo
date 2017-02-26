@@ -5,6 +5,10 @@ location-container {
   box-shadow: rgba(0, 0, 0, 0.156863) 0px 4px 4px -2px, rgba(0, 0, 0, 0.227451) 0px 4px 4px -2px;
 }
 location-input {
+  width: inherit;
+  position: fixed;
+  margin-top: 64px;
+  z-index: 9;
   margin-bottom: 5px;
 }
 search-col {

@@ -24,7 +24,7 @@ const App = ({ children }) => (
   <MuiThemeProvider muiTheme={mapsTheme}>
     <app>
       <Map />
-      <SidePanel>{ children }</SidePanel>
+      <SidePanel>{children}</SidePanel>
     </app>
   </MuiThemeProvider>
 )

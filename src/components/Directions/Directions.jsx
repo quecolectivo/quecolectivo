@@ -5,7 +5,9 @@ import './Directions.css'
 const Directions = ({ children }) => (
   <directions>
     <LocationInput />
-    { children }
+    <content>
+      { children }
+    </content>
   </directions>
 )
 

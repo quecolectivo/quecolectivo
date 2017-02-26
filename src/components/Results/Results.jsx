@@ -1,20 +1,21 @@
 import React from 'react'
-import {ListItem} from 'material-ui/List'
-import {connect} from 'react-redux'
-import {blue500} from 'material-ui/styles/colors'
+import { ListItem } from 'material-ui/List'
+import { connect } from 'react-redux'
+import { blue500 } from 'material-ui/styles/colors'
+import Paper from 'material-ui/Paper';
 import Bus from 'material-ui/svg-icons/maps/directions-bus'
 
 import SuggestionBlock from '../Suggestions/SuggestionBlock'
-import {getRouteData} from '../../redux/getters'
-import {setRoute, setSelectedRoute, setHoverRoute} from '../../redux/actions'
+import { getRouteData } from '../../redux/getters'
+import { setRoute, setSelectedRoute, setHoverRoute } from '../../redux/actions'
 
 import './Results.css'
 
-const Results = ({routeData, setSelectedRoute, setHoverRoute}) => {
+const Results = ({ routeData, setSelectedRoute, setHoverRoute }) => {
   const mapData = () => {
     return routeData.data.results.allIds.map((osmId, index) => {
       const result = routeData.data.results.byId[osmId]
-      const [name, direction] = result.name.split(':')
+      const [ name, direction ] = result.name.split(':')
       return (
         <ListItem
           primaryText={name || 'placeholder'}
@@ -23,14 +24,18 @@ const Results = ({routeData, setSelectedRoute, setHoverRoute}) => {
           onTouchTap={() => setSelectedRoute(result)}
           leftIcon={<Bus color={blue500} />}
           onMouseEnter={() => setHoverRoute(result)}
-      />
+        />
       )
-    }
-    )
+    })
   }
   const renderResults = () => {
-    if (!routeData || !routeData.data || !routeData.data.results || routeData.data.results.length === 0) {
-      return (null)
+    if (
+      !routeData ||
+        !routeData.data ||
+        !routeData.data.results ||
+        routeData.data.results.length === 0
+    ) {
+      return null
     }
     return (
       <SuggestionBlock subheader='Resultados'>
@@ -40,12 +45,18 @@ const Results = ({routeData, setSelectedRoute, setHoverRoute}) => {
   }
 
   return (
+    <div>
+    <Paper style={{ width: 'inherit', display: 'flex' }} zDepth={1} rounded={false} >
+    <div>
     <results>
-      { renderResults() }
+      {renderResults()}
     </results>
+    </div>
+    </Paper>
+    </div>
   )
 }
 
-const mapDispatchToProps = {setRoute, setSelectedRoute, setHoverRoute}
+const mapDispatchToProps = { setRoute, setSelectedRoute, setHoverRoute }
 const mapStateToProps = getRouteData
 export default connect(mapStateToProps, mapDispatchToProps)(Results)

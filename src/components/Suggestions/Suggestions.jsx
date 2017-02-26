@@ -1,69 +1,80 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import {ListItem} from 'material-ui/List'
+import { ListItem } from 'material-ui/List'
 import LocationIcon from 'material-ui/svg-icons/maps/my-location'
+import Paper from 'material-ui/Paper';
 import PlaceIcon from 'material-ui/svg-icons/maps/place'
 import HomeIcon from 'material-ui/svg-icons/action/home'
 import AccessIcon from 'material-ui/svg-icons/device/access-time'
-import {blue500, grey500} from 'material-ui/styles/colors'
+import { blue500, grey500 } from 'material-ui/styles/colors'
 
-import {getSearchData} from '../../redux/getters.js'
-import {setLocation} from '../../redux/actions.js'
+import { getSearchData } from '../../redux/getters.js'
+import { setLocation } from '../../redux/actions.js'
 import LocationResult from './LocationResult'
 import SuggestionBlock from './SuggestionBlock'
 
 import './Suggestions.css'
 
-const mapData = (results) => results.map((result) => (
-  <LocationResult
-    key={result.place_id}
-    result={result} />
-))
+const mapData = results =>
+  results.map(result => (
+    <LocationResult key={result.place_id} result={result} />
+  ))
 
-const showData = (data) => {
+const showData = data => {
   if (!data || !data.results || data.results.length === 0) {
-    return (null)
+    return null
   }
 
-  let results = data.results.filter((result) => result.place_id !== 'ChIJ4y8KScLeopURniKCiwyf1mw')
+  let results = data.results.filter(
+    result => result.place_id !== 'ChIJ4y8KScLeopURniKCiwyf1mw'
+  )
 
   if (!results || results.length === 0) {
-    return (null)
+    return null
   }
 
   return (
     <SuggestionBlock subheader='Resultados'>
-      { mapData(results) }
+      {mapData(results)}
     </SuggestionBlock>
   )
 }
 
 const Suggestions = ({ searchData, setLocation }) => (
-
+  <Paper style={{ width: 'inherit', display: 'flex' }} zDepth={1} rounded={false} >
   <suggestions>
     <SuggestionBlock>
-      <ListItem primaryText='Tu ubicacion'
+      <ListItem
+        primaryText='Tu ubicacion'
         onTouchTap={() => setLocation()}
-        leftIcon={<LocationIcon color={blue500} />} />
-      <ListItem primaryText='Elegir desde el mapa'
-        leftIcon={<PlaceIcon color={grey500} />} />
+        leftIcon={<LocationIcon color={blue500} />}
+      />
+      <ListItem
+        primaryText='Elegir desde el mapa'
+        leftIcon={<PlaceIcon color={grey500} />}
+      />
     </SuggestionBlock>
-
-    { showData(searchData) }
-
+    {showData(searchData)}
     <SuggestionBlock subheader='Lugares Recientes'>
-      <ListItem primaryText='Home' secondaryText='Tolosa, Buenos Aires'
-        leftIcon={<HomeIcon color={blue500} />} />
-      <ListItem primaryText='Placeholder 1' secondaryText='La Plata, Buenos Aires'
-        leftIcon={<AccessIcon color={grey500} />} />
-      <ListItem primaryText='Placeholder 2' secondaryText='La Plata, Buenos Aires'
-        leftIcon={<AccessIcon color={grey500} />} />
+      <ListItem
+        primaryText='Home'
+        secondaryText='Tolosa, Buenos Aires'
+        leftIcon={<HomeIcon color={blue500} />}
+      />
+      <ListItem
+        primaryText='Placeholder 1'
+        secondaryText='La Plata, Buenos Aires'
+        leftIcon={<AccessIcon color={grey500} />}
+      />
+      <ListItem
+        primaryText='Placeholder 2'
+        secondaryText='La Plata, Buenos Aires'
+        leftIcon={<AccessIcon color={grey500} />}
+      />
     </SuggestionBlock>
-
   </suggestions>
+  </Paper>
 )
 
-const mapDispatchToProps = {
-  setLocation
-}
+const mapDispatchToProps = { setLocation }
 export default connect(getSearchData, mapDispatchToProps)(Suggestions)

@@ -1,5 +1,19 @@
 directions {
-  height: 93%;
   display: flex;
   flex-direction: column;
+  width: inherit;
+}
+
+directions content{
+  position: absolute;
+  margin-top: 192px;
+  display: flex;
+  z-index: -1;
+  width: inherit;
+  bottom: 0;
+  top: 0;
+}
+
+directions content > * {
+  z-index: 8;
 }
