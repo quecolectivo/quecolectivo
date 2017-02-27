@@ -8,10 +8,11 @@ top-bar {
   z-index: 10;
   position: fixed;
   top: 0;
+  /*box-shadow: rgba(0, 0, 0, 0.156863) 0px 3px 10px, rgba(0, 0, 0, 0.227451) 0px 3px 10px;*/
 }
 
 nav {
-  display: flex;
+  display: flex!important;
   flex-direction: row;
   justify-content: space-between;
   flex-grow: 2;
