@@ -5,7 +5,9 @@ import MapDirectionsBus from 'material-ui/svg-icons/maps/directions-bus'
 import SocialShare from 'material-ui/svg-icons/social/share'
 import muiThemeable from 'material-ui/styles/muiThemeable'
 import { Link } from 'react-router'
+import {connect} from 'react-redux'
 
+import {getPath} from '../../redux/getters'
 import NavButton from './NavButton/NavButton'
 import './TopBar.css'
 
@@ -16,8 +18,8 @@ const styles = (muiTheme) => ({
   }
 })
 
-const TopBar = ({ openMenu, muiTheme }) => (
-  <top-bar style={styles(muiTheme).topBar} >
+const TopBar = ({ openMenu, muiTheme, currentPath }) => (
+  <top-bar style={styles(muiTheme).topBar}  class={currentPath=='/' ? 'homebar' : console.log(currentPath)}>
     <hamburger>
       <NavButton title='Menu' onTouchTap={openMenu} position='bottom-right'>
         <NavigationMenu />
@@ -45,4 +47,4 @@ const TopBar = ({ openMenu, muiTheme }) => (
   </top-bar>
 )
 
-export default muiThemeable()(TopBar)
+export default muiThemeable()(connect(getPath)(TopBar))

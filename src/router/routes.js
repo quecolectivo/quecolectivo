@@ -8,7 +8,7 @@ import Results from '../components/Results/Results'
 
 const routes = (
   <Route path='/' component={App}>
-    <IndexRoute component={Directions} />
+    <IndexRoute component={null} />
     <Route path='dir' component={Directions}>
       <IndexRoute component={Suggestions} />
       <Route path='results' component={Results} />
